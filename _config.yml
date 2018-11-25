@@ -1,0 +1,32 @@
+# site settings
+title: Yui Wei Tan
+subtitle: portfolio website
+email: tyuiwei@gmail.com
+description: artist/programmer
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "yuiwei.com" # the base hostname & protocol for your site
+author:
+street_address: 1234 Somewhere Road
+city: Nashville
+state: TN
+zip_code:
+country: United States of America
+phone:
+
+# social settings
+500px_url:
+facebook_url:
+github_url: https://github.com/tyuiwei
+gitlab_url:
+googleplus_url:
+instagram_url:
+linkedin_url:
+pinterest_url:
+slack_url:
+twitter_url: https://twitter.com/yuiwei
+
+# build settings
+markdown: kramdown
+
+sass:
+  style: compressed
