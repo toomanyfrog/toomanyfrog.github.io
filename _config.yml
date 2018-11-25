@@ -4,7 +4,7 @@ subtitle: portfolio website
 email: tyuiwei@gmail.com
 description: artist/programmer
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "yuiwei.com" # the base hostname & protocol for your site
+url: "" # the base hostname & protocol for your site
 author:
 street_address: 1234 Somewhere Road
 city: Nashville
