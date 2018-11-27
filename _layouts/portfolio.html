@@ -14,23 +14,9 @@
             {% include header.html %}
             {% include menu.html %}
 
-				    <!-- Featured Post -->
-				    <article class="post featured">
-						    <header class="major">
-								{% include about.html %}
-						    </header>
-						    <!--a href="#" class="image main"><img src="assets/images/pic01.jpg" alt="" /></a>
-						    <ul class="actions">
-								    <li><a href="#" class="button big">Full Story</a></li>
-						    </ul-->
-				    </article>
-
             {% if site.projects != null %}
 
 				    <!-- Posts -->
-            <article class="post featured">
-              <header><h2>Selected Projects</h2></header>
-            </article>
 				    <section class="posts">
 	              {% for project in site.projects %}
 						    <article>
