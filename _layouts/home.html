@@ -23,26 +23,26 @@
 									      facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor<br />
 									      amet nullam sed etiam veroeros.</p>
 						    </header>
-						    <a href="#" class="image main"><img src="assets/images/pic01.jpg" alt="" /></a>
+						    <!--a href="#" class="image main"><img src="assets/images/pic01.jpg" alt="" /></a>
 						    <ul class="actions">
 								    <li><a href="#" class="button big">Full Story</a></li>
-						    </ul>
+						    </ul-->
 				    </article>
 
             {% if site.posts != null %}
 
 				    <!-- Posts -->
 				    <section class="posts">
-	              {% for post in site.projects %}
+	              {% for project in site.projects %}
 						    <article>
 								    <header>
-										    <span class="date">{{ post.date | date: "%B %-d, %Y" }}</span>
-										<h2><a href="{{ post.url  | relative_url }}">{{ post.title }}</a></h2>
+										    <span class="date">{{ project.date | date: "%B %-d, %Y" }}</span>
+										<h2><a href="{{ project.url  | relative_url }}">{{ project.title }}</a></h2>
 								</header>
-								<a href="{{ post.url  | relative_url }}" class="image fit"><img src="{{ post.image }}" alt="" /></a>
-								<p>{{ post.excerpt }}</p>
+								<a href="{{ project.url  | relative_url }}" class="image fit"><img src="{{ project.image }}" alt="" /></a>
+								<p>{{ project.excerpt }}</p>
 								<ul class="actions">
-										<li><a href="{{ post.url  | relative_url }}" class="button">Full Story</a></li>
+										<li><a href="{{ project.url  | relative_url }}" class="button">Full Story</a></li>
 								</ul>
 						</article>
 	          {% endfor %}

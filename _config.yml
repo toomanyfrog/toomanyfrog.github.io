@@ -32,4 +32,5 @@ sass:
   style: compressed
 
 collections:
-  - projects
+  projects:
+    output: true
