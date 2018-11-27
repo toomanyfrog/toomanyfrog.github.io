@@ -8,6 +8,8 @@ image: assets/images/jester/jester_zbrushdoc.jpg
 In May I did a concept/beauty sculpt of a D&D Tiefling character in ZBrush.
 
 --
+<span class="image fit"><img src="assets/images/pic01.jpg" alt="" /></span>
+
 <span class="image fit"><img src="assets/images/jester/polypaint.png" alt="" /></span>
 Polypainted in ZBrush, before posing.
 
