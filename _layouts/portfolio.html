@@ -16,15 +16,15 @@
             {% if site.projects != null %}
 
 				    <!-- Posts -->
-				    <section class="posts">
+				    <section class="portfolio">
 	              {% for project in site.projects %}
-						    <article>
-								<a href="{{ project.url  | relative_url }}" class="image fit"><img src="{{ project.image }}" alt="" /></a>
+						    <article style="background-image: url({{ project.image }})">
+								<!--a href="{{ project.url  | relative_url }}" class="image fit"><img src="{{ project.image }}" alt="" /></a-->
                 <header>
                     <!--span class="date">{{ project.date | date: "%B %-d, %Y" }}</span-->
                     <h2><a href="{{ project.url  | relative_url }}">{{ project.title }}</a></h2>
                 </header>
-								<p>{{ project.excerpt }}</p>
+								<!--p>{{ project.excerpt }}</p-->
 								<!--ul class="actions">
 										<li><a href="{{ project.url  | relative_url }}" class="button">see more</a></li>
 								</ul-->

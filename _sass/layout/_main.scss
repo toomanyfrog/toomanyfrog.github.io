@@ -146,6 +146,73 @@
 			}
 		}
 
+		> .portfolio {
+			@include flexgrid((
+				columns:			3,
+				gutters:			(_size(padding) * 4),
+				horizontal-align:	center,
+				vertical-align:		flex-start,
+				flush:				false
+			));
+			width: 100%;
+			padding: 5%;
+
+			> article {
+				background-size: cover;
+				background-position: center;
+				text-align: center;
+				
+				> :last-child {
+					margin-bottom: 0;
+				}
+
+				&:nth-child(2n - 1) {
+					border-left-width: 0;
+				}
+
+				&:nth-child(-n + 2) {
+					border-top-width: 0;
+				}
+			}
+
+			@include breakpoint(medium) {
+				@include flexgrid-resize((
+					columns:			2,
+					gutters:			(_size(padding) * 2.5),
+					flush:				false
+				));
+			}
+
+			@include breakpoint(small) {
+				@include flexgrid-resize((
+					columns:			1,
+					gutters:			(_size(padding) * 2),
+					prev-columns:		2,
+					flush:				false
+				));
+
+				> article {
+
+					&:nth-child(2n - 1) {
+						border-left-width: 2px;
+					}
+
+					&:nth-child(-n + 2) {
+						border-top-width: 2px;
+					}
+
+					&:nth-child(n) {
+						border-left-width: 0;
+					}
+
+					&:nth-child(-n + 1) {
+						border-top-width: 0;
+					}
+
+				}
+			}
+		}
+
 		@include breakpoint(small) {
 			> * {
 				@include padding((_size(padding) * 1), (_size(padding) * 1));
