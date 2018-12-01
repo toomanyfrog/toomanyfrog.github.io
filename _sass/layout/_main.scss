@@ -150,6 +150,7 @@
 			@include flexgrid((
 				columns:			3,
 				gutters:			(_size(padding) * 4),
+				padding: 10px,
 				horizontal-align:	center,
 				vertical-align:		flex-start,
 				flush:				false
@@ -161,7 +162,10 @@
 				background-size: cover;
 				background-position: center;
 				text-align: center;
-				
+				h2 {
+					color: _palette(bg);
+				}
+
 				> :last-child {
 					margin-bottom: 0;
 				}
