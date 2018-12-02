@@ -2,7 +2,7 @@
 layout: post
 title: SPACEBAR
 description: BVW ROUND 5
-image: assets/images/spacebar/sbss.png
+image: assets/images/bvw/spacebar/ss.png
 tags: game unity
 ---
 

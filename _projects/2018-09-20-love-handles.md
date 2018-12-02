@@ -2,7 +2,7 @@
 layout: post
 title: Love Handles
 description: BVW ROUND 2
-image: assets/images/spacebar/sbss.png
+image: assets/images/bvw/love-handles/ss.png
 tags: game unity
 ---
 

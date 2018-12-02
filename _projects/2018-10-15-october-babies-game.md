@@ -2,7 +2,7 @@
 layout: post
 title: OCTOBER BABIES
 description: BVW ROUND 3
-image: assets/images/spacebar/sbss.png
+image: assets/images/bvw/october-babies/ss.png
 tags: game unity
 ---
 

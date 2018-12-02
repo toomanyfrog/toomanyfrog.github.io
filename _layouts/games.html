@@ -22,8 +22,7 @@
               <article>
                 <a href="{{ project.url  | relative_url }}" class="image fit"><img src="{{ project.image }}" alt="" /></a>
                 <header>
-                  <span class="date">{{ project.date | date: "%B %-d, %Y" }}</span>
-                  <h2><a href="{{ project.url  | relative_url }}">{{ project.title }}</a></h2>
+                  <h2><a href="{{ project.url  | relative_url }}">{{ project.title }} ({{ project.date | date: "%Y" }})</a></h2>
                 </header>
 								<p>{{ project.excerpt }}</p>
 								<ul class="actions">
