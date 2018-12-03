@@ -21,10 +21,13 @@ An asymmetrical VR coop bartending experience.
 <b>Contributions</b><br>
 
 - Designed game mechanics in a multi-disciplinary team
-- Scripted rhythm game and tutorial system
-- Conceptualized and scripted VR beatmap maker
-- Conducted playtests
-With this project, we set out to create a rhythm game along the lines of Beat Saber, but using punching and kicking instead of slicing as the core mechanic. We were also given a wireless HTC Vive headset that allowed us to create beat patterns that would let players rotate in 360 degrees.
+- Designed environment and developed overall look of the game
+- Created models and animations for the environment
+- Wrote shaders for overall look of the game and to aid in rapid development
+
+In this project, we were tasked with creating a game that was appropriate for the ETC Festival. Specifically for the festival, the main requirements we needed were replayability, intuitive gameplay, and fun.
+
+We started out deciding we wanted to make a cooperative VR game that was wacky and weird.
 </p>
 
 
