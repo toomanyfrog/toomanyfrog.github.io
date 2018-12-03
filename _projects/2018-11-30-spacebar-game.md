@@ -17,8 +17,7 @@ An asymmetrical VR coop bartending experience.
 <b>Tools:</b> Unity<br>
 </p>
 
-<p>
-<b>Contributions</b><br>
+<b>Contributions</b>
 
 - Designed game mechanics in a multi-disciplinary team
 - Designed environment and developed overall look of the game
@@ -28,7 +27,7 @@ An asymmetrical VR coop bartending experience.
 In this project, we were tasked with creating a game that was appropriate for the ETC Festival. Specifically for the festival, the main requirements we needed were replayability, intuitive gameplay, and fun.
 
 We started out deciding we wanted to make a cooperative VR game that was wacky and weird.
-</p>
+
 
 
 Design Challenges

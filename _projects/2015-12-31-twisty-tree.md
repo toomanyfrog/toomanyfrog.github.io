@@ -17,14 +17,12 @@ A 2D puzzle platformer set in a 3D world, like Fez. Made in Unity at Gamecraft, 
 <b>Tools:</b> Unity<br>
 </p>
 
-<p>
-<b>Contributions</b><br>
+Contributions
 
 - Designed game mechanics in a team of 2
 - Paper prototyped and rapidly iterated level design
 - Scripted character controllers and mechanics
 
-</p>
 
 
 Design Challenges

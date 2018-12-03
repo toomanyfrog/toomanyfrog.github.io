@@ -17,14 +17,13 @@ A puzzle game for the Meta 2 augmented reality platform.
 <b>Tools:</b> Unity<br>
 </p>
 
-<p>
-<b>Contributions</b><br>
+Contributions
 
 - Designed game mechanics in a multi-disciplinary team
 -
 
 The theme for this project was a feeling of freedom.
-</p>
+
 
 
 Design Challenges

@@ -17,14 +17,11 @@ Halloween-themed endless runner on the Kinect
 <b>Tools:</b> Unity<br>
 </p>
 
-<p>
-<b>Contributions</b><br>
+Contributions
 
 - Designed game mechanics in a multi-disciplinary team
 - Worked closely with programmer to rig and animate a bird that would be skeleton-matched to the Kinect humanoid skeleton
 
-
-</p>
 
 
 Design Challenges
