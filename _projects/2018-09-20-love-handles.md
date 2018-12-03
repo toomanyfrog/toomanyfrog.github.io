@@ -20,7 +20,8 @@ A puzzle game for the Meta 2 augmented reality platform.
 Contributions
 
 - Designed game mechanics in a multi-disciplinary team
--
+- Created character model and rig
+- Wrote simple controllers for animation of character
 
 The theme for this project was a feeling of freedom.
 
