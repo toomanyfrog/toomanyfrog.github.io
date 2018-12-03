@@ -20,11 +20,10 @@ A 2D puzzle platformer set in a 3D world, like Fez. Made in Unity at Gamecraft, 
 <p>
 <b>Contributions</b><br>
 
-- Designed game mechanics in a multi-disciplinary team
-- Scripted rhythm game and tutorial system
-- Conceptualized and scripted VR beatmap maker
-- Conducted playtests
-With this project, we set out to create a rhythm game along the lines of Beat Saber, but using punching and kicking instead of slicing as the core mechanic. We were also given a wireless HTC Vive headset that allowed us to create beat patterns that would let players rotate in 360 degrees.
+- Designed game mechanics in a team of 2
+- Paper prototyped and rapidly iterated level design
+- Scripted character controllers and mechanics
+
 </p>
 
 

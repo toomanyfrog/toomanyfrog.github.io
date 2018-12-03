@@ -21,10 +21,9 @@ Halloween-themed endless runner on the Kinect
 <b>Contributions</b><br>
 
 - Designed game mechanics in a multi-disciplinary team
-- Scripted rhythm game and tutorial system
-- Conceptualized and scripted VR beatmap maker
-- Conducted playtests
-With this project, we set out to create a rhythm game along the lines of Beat Saber, but using punching and kicking instead of slicing as the core mechanic. We were also given a wireless HTC Vive headset that allowed us to create beat patterns that would let players rotate in 360 degrees.
+- Worked closely with programmer to rig and animate a bird that would be skeleton-matched to the Kinect humanoid skeleton
+
+
 </p>
 
 
