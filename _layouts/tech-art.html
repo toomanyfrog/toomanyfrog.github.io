@@ -16,24 +16,23 @@
             {% if site.projects != null %}
 
 				    <!-- Posts -->
-		    <section class="games">
-          {% for project in site.projects reversed %}
-            {% if project.tags contains 'game' %}
-              <article>
-                <a href="{{ project.url  | relative_url }}" class="image left"><img src="{{ project.image }}" alt="" /></a>
-                <div class="text">
+				    <section class="portfolio">
+	              {% for project in site.projects %}
+                {% if project.tags contains 'tech-art' %}
+                <article style="background-image: url('../assets/images/overlay.png'),	linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.3)),	url({{ project.image }})">
+								<!--a href="{{ project.url  | relative_url }}" class="image fit"><img src="{{ project.image }}" alt="" /></a-->
                   <header>
-                    <h2><a href="{{ project.url  | relative_url }}">{{ project.title }} ({{ project.date | date: "%Y" }})</a></h2>
+                    <!--span class="date">{{ project.date | date: "%B %-d, %Y" }}</span-->
+                    <h2><a href="{{ project.url  | relative_url }}">{{ project.title }}</a></h2>
                   </header>
-  								<p>{{ project.excerpt }}</p>
-  								<ul class="actions">
-  									<li><a href="{{ project.url  | relative_url }}" class="button">see more</a></li>
-  								</ul>
-                </div>
-					    </article>
-            {% endif %}
-          {% endfor %}
-	      </section>
+								<!--p>{{ project.excerpt }}</p-->
+								<!--ul class="actions">
+										<li><a href="{{ project.url  | relative_url }}" class="button">see more</a></li>
+								</ul-->
+						    </article>
+                {% endif %}
+	          {% endfor %}
+				</section>
 
 
         <!-- Footer -->

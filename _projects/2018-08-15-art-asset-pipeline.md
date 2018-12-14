@@ -3,6 +3,7 @@ layout: post
 title: Dragon (Unity Art Pipeline)
 description: Created a Unity scene with a dragon.
 image: assets/images/bvw/dragons/dragons.png
+tags: 3d art
 ---
 
 Modeled, textured, rigged and animated a dragon model. Then brought it into Unity and scripted a simple circular catwalk scene.

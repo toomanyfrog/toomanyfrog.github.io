@@ -3,6 +3,7 @@ layout: post
 title: Isetta Engine Project Cover
 description: Book cover illustration for ETC Game Engine project
 image: assets/images/isetta-cover/final.jpg
+tags: 2d art
 ---
 
 Concepted and executed a book cover illustration for the Isetta Engine Project, which was publishing a book compiling interviews with game engine programmers to document the game engine development process.

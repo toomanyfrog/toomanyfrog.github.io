@@ -3,6 +3,7 @@ layout: post
 title: Modelling and Animating with scripts
 description: Created models and animations using Python scripting in Maya
 image: assets/images/bvw/spacebar/scripting/tentacless.png
+tags: tech-art
 ---
 
 Used Python scripts to model, rig, and animate assets for Space Bar, a VR bartending experience.

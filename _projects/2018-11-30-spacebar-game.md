@@ -6,16 +6,16 @@ image: assets/images/bvw/spacebar/ss.png
 tags: game unity
 ---
 
-An asymmetrical VR coop bartending experience.
+An asymmetrical VR coop bartending experience...in space! One player fills life-size martini glasses from an elevated position, and the other one throws garnish from behind the bar.<br>
+**Role:** _Game design, look development, technical art_
 
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed//fJJ8DqYKe00' frameborder='0' allowfullscreen></iframe></div>
 
-<p>
-<b>Role:</b> Designer / Technical Artist<br>
-<b>Duration:</b> 3 weeks<br>
-<b>Platform:</b> HTC Vive + controllers<br>
-<b>Tools:</b> Unity<br>
-</p>
+**Role:** Designer / Technical Artist<br>
+**Duration:** 3 weeks<br>
+**Platform:** HTC Vive + controllers<br>
+**Tools:** Unity<br>
+
 
 <b>Contributions</b>
 

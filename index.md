@@ -1,4 +1,4 @@
 ---
 layout: home
-title: homepage
+title: about me
 ---

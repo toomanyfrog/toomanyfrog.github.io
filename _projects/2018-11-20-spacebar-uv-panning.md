@@ -3,7 +3,7 @@ layout: post
 title: Soda gun stream effect and UV panner
 description: Created soda gun stream and simple UV panner
 image: assets/images/bvw/spacebar/scripting/tentacless.png
-tags: shader, unity
+tags: shader unity tech-art
 ---
 
 To accomplish the effect of a soda gun, I wrote a shader to animate the texture on liquid flow with UV panning. It was also used as a projection on the bar walls.

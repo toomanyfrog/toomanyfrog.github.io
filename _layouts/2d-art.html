@@ -18,6 +18,7 @@
 				    <!-- Posts -->
 				    <section class="portfolio">
 	              {% for project in site.projects %}
+                {% if project.tags contains '2d' %}
                 <article style="background-image: url('../assets/images/overlay.png'),	linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.3)),	url({{ project.image }})">
 								<!--a href="{{ project.url  | relative_url }}" class="image fit"><img src="{{ project.image }}" alt="" /></a-->
                   <header>
@@ -29,6 +30,7 @@
 										<li><a href="{{ project.url  | relative_url }}" class="button">see more</a></li>
 								</ul-->
 						    </article>
+                {% endif %}
 	          {% endfor %}
 				</section>
 

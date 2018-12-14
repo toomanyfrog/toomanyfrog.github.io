@@ -3,6 +3,7 @@ layout: post
 title: ZBrush Concept Sculpt
 description: Concept sculpt in ZBrush for a D&D character
 image: assets/images/jester/jester_zbrushdoc.jpg
+tags: 3d art
 ---
 
 In March 2018 I did a concept/beauty sculpt of a D&D Tiefling character in ZBrush.

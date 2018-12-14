@@ -3,6 +3,7 @@ layout: post
 title: Blendshape Animation
 description: Created sodagun hands using blendshapes
 image: assets/images/bvw/spacebar/blendshape.png
+tags: 3d art
 ---
 
 Used Blendshapes to create an animation for the sodagun hands in Space Bar, an asymmetrical VR bartending experience.

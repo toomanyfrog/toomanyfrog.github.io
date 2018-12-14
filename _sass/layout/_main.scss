@@ -217,13 +217,36 @@
 			}
 		}
 
-		@include breakpoint(small) {
-			> * {
-				@include padding((_size(padding) * 1), (_size(padding) * 1));
-			}
-		}
 
-		@include breakpoint(xsmall) {
-			width: 100%;
+
+	> .games {
+		@include flexgrid((
+			columns:			1,
+			gutters:			(_size(padding) * 4),
+			padding: 10px,
+			horizontal-align:	left,
+			vertical-align:		flex-start,
+			flush:				false
+		));
+		width: 100%;
+		padding: 0;
+
+		> article {
+			border-color: _palette(border);
+			border-left-width: 2px;
+			border-style: solid;
+			border-top-width: 2px;
+			text-align: left;
+				.text {
+					vertical-align: flex-start;
+					margin-left: 2rem;
+					margin-right: 2rem;
+				}
+				.image {
+					max-width: 25rem;
+					margin-left: 2rem;
+					margin-right: 2rem;
+				}
+			}
 		}
 	}

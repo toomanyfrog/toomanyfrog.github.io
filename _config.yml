@@ -1,6 +1,6 @@
 # site settings
-title: Yui Wei Tan
-subtitle: portfolio website
+title: YUI 
+subtitle:
 email: tyuiwei@gmail.com
 description: artist/programmer
 baseurl: "/" # the subpath of your site, e.g. /blog
