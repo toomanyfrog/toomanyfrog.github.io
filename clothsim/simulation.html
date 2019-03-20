@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - cloth simulation</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #aaa;
+				color: #000;
+				margin: 0px;
+				overflow: hidden;
+			}
+
+			#info {
+				position: absolute;
+				padding: 10px;
+				width: 100%;
+				text-align: center;
+			}
+
+			a {
+				text-decoration: underline;
+				cursor: pointer;
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<div id="info">15-664 Cloth Simulation<br/>
+
+      <!--
+            - Different Integrators (Verlet, Backward Euler, RK4?)
+            - Mass-spring and Constraint Cloth Models
+      -->
+
+			<!--a onclick="wind = !wind;">Wind</a> |
+			<a onclick="sphere.visible = !sphere.visible;">Ball</a> |
+			<a onclick="togglePins();">Pins</a-->
+		</div>
+		<script src="js/libs/dat.gui.min.js"></script>
+
+		<script src="three/three.js"></script>
+
+		<script src="js/WebGL.js"></script>
+		<script src="js/controls/OrbitControls.js"></script>
+		<script src="js/controls/TrackballControls.js"></script>
+		<script src="js/libs/stats.min.js"></script>
+		<script src="js/ParametricGeometries.js"></script>
+
+		<script src="cloth.js"></script>
+		<script src="simulation.js"></script>
+
+		<script>
+
+		</script>
+	</body>
+</html>
