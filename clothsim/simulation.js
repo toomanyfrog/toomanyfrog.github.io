@@ -257,13 +257,13 @@ function lights() {
 }
 function scene2() {
 	scene = new THREE.Scene();
-	var ambient = new THREE.AmbientLight( 0xffffff, 0.1 );
+	var ambient = new THREE.AmbientLight( 0x000000, 0.1 );
 	scene.add( ambient );
-	rectLight = new THREE.RectAreaLight( 0xffffff, 2, 7000, 7000 );
+	rectLight = new THREE.RectAreaLight( 0xaa0000, 2, 7000, 7000 );
 	rectLight.position.set( 0, 500, 2000 );
     rectLight.rotateY(Math.PI/4);
 	scene.add( rectLight );
-	var rectLightMesh = new THREE.Mesh( new THREE.PlaneBufferGeometry(), new THREE.MeshBasicMaterial( { side: THREE.BackSide } ) );
+	var rectLightMesh = new THREE.Mesh( new THREE.PlaneBufferGeometry(), new THREE.MeshBasicMaterial( { color: 0x9999ee, side: THREE.BackSide } ) );
 	rectLightMesh.scale.x = rectLight.width;
 	rectLightMesh.scale.y = rectLight.height;
 	rectLight.add( rectLightMesh );
