@@ -1,4 +1,0 @@
----
-layout: games
-title: games
----
