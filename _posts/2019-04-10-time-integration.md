@@ -34,7 +34,7 @@ This week we have paper presentations and I talk about this paper to the class, 
 Tiantian Liu made a much better video explaining the paper. You can find that in the references as well. My presentation is very much tailored to the class and what we know collectively, which is not that much.
 </div>
 
-<video controls width=500 src="http://yuiwei.com/wp-content/uploads/2019/04/my-fepr-presentation.mp4"></video>
+<video controls width=700 src="http://yuiwei.com/wp-content/uploads/2019/04/my-fepr-presentation.mp4"></video>
 
 The link to the slides is http://bit.ly/yuifepr
 
