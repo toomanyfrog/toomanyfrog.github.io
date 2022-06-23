@@ -19,3 +19,4 @@ plugins:
 
 exclude:
   - projects
+  - example.md

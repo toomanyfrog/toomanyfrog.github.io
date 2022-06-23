@@ -1,6 +1,6 @@
 ---
 layout: post
-title: week 1-5
+title: week 1-3
 tags: simulation, class-notes
 ---
 
@@ -11,7 +11,7 @@ tags: simulation, class-notes
 
 Procedural animation has some really cool applications - automatic skinning and animation has been used in games like Spore, where players can make their own creatures. Procedural generation of variants in animation can also help generate some natural look to character's scripted animation. 
 
-## Week 2-4: Inverse Kinematics
+## Week 2-3: Inverse Kinematics
 
 In Week 2, we visited Motion Capture lab in CMU. As I've never been in a motion capture lab before, this experience was really enlightening for me. They use infrared cameras and plastic balls wrapped in reflective tape to capture positional data. There were different sized reflective balls for different types of data. For facial capture, the motion capture lab assistant has to reconfigure and calibrate all the infrared cameras. I've not used any motion capture system calibration and capture software before, but I think it might be similar to camera calibration systems in computer vision for 3D reconstruction, which I am somewhat more familiar with.
 
