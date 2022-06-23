@@ -2,7 +2,7 @@
 title:               blog.yui.codes
 tagline:             'thought dump revolving around art+tech'
 description:         'fun stuff'
-url:                 http://blog.yui.codes
+url:                 https://blog.yui.codes
 baseurl:             ''
 paginate:            3
 permalink:           pretty
