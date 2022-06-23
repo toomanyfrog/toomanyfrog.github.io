@@ -50,4 +50,4 @@ The link to the slides is http://bit.ly/yuifepr
 
 ## Final Project Presentation
 
-<iframe src="https://drive.google.com/file/d/1sxFrRZN9afnka3dR_s0ui9CiJLRZiG28/preview" width="800" height="800"></iframe>
+<iframe src="https://drive.google.com/file/d/1sxFrRZN9afnka3dR_s0ui9CiJLRZiG28/preview" width="700" height="800"></iframe>
