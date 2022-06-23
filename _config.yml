@@ -4,7 +4,7 @@ tagline:             'thought dump revolving around art+tech'
 description:         'fun stuff'
 url:                 http://blog.yui.codes
 baseurl:             ''
-paginate:            5
+paginate:            3
 permalink:           pretty
 
 # About/contact
