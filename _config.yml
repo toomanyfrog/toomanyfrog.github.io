@@ -18,5 +18,4 @@ plugins:
   - jekyll-paginate
 
 exclude:
-  - projects
   - example.md
