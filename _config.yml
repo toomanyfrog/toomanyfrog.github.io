@@ -1,7 +1,7 @@
 # Setup
 title:               blog.yui.codes
 tagline:             'thought dump revolving around art+tech'
-description:         'fun stuff'
+description:         'a blog containing mainly learning notes and thought dumps around art+tech and tech art'
 url:                 https://blog.yui.codes
 baseurl:             ''
 paginate:            3
