@@ -4,10 +4,12 @@ title: about/ethos
 ---
 
 <p class="message">
-  Hello there. Since there are many sites and blogs and papers and media to which we now have access that are much more eloquent, polished and useful than mine, I thought I should share some of the ethos behind why I keep this blog, and more than that, why I choose to keep it public. 
+  hello there. in this day and age, there are more than plenty sites and blogs and papers and media to which we now have access if we want to learn anything. that is, plenty sites and blogs which are much more eloquent, polished and useful than mine, so i thought maybe i should write something to explain why i keep this blog and why i keep it in a public space. 
 </p>
 
-[@yuiwei](https://twitter.com/yuiwei).
+[well...it'll get out of my drafts one day]
+
+[@yuiwei](https://twitter.com/yuiwei)
 
 
 ## sites
