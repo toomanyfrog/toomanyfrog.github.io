@@ -34,7 +34,7 @@ This week we have paper presentations and I talk about this paper to the class, 
 Tiantian Liu made a much better video explaining the paper. You can find that in the references as well. My presentation is very much tailored to the class and what we know collectively, which is not that much.
 </div>
 
-<video controls width=700 src="https://drive.google.com/file/d/1HaLMeuPThhnI89ivUBvjGqwPY6JzKF7Z/view/preview"></video>
+<video controls width=700 src="https://drive.google.com/file/d/1HaLMeuPThhnI89ivUBvjGqwPY6JzKF7Z/preview"></video>
 
 The link to the slides is http://bit.ly/yuifepr
 
