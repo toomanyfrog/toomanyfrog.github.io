@@ -1,0 +1,49 @@
+I"o<h2 id="final-project-idea">Final Project Idea</h2>
+
+<p>Energy drift - usually damping - is substantial for numerical integration schemes that are not <a href="https://en.wikipedia.org/wiki/Symplectic_integrator">symplectic</a>, such as the <a href="https://en.wikipedia.org/wiki/Runge-Kutta">Runge-Kutta</a> family.</p>
+
+<p><img src="http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.05.00-PM-1024x619.png" alt="" class="wp-image-394" /></p>
+
+<p><img src="http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.05.18-PM-1024x628.png" alt="" class="wp-image-395" /></p>
+
+<p><img src="http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.05.45-PM-1024x542.png" alt="" class="wp-image-396" /></p>
+
+<p><img src="http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.05.53-PM-1024x597.png" alt="" class="wp-image-397" /></p>
+
+<p><img src="http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.06.07-PM-1024x634.png" alt="" class="wp-image-398" /></p>
+
+<p><img src="http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.06.13-PM-1024x642.png" alt="" class="wp-image-399" /></p>
+
+<p>Symplectic integrators usually used in molecular dynamics, such as the <a href="https://en.wikipedia.org/wiki/Verlet_integration">Verlet integrator</a> family, exhibit increases in energy over very long time scales, though the error remains roughly constant. These integrators do not in fact reproduce the <a href="https://en.wikipedia.org/wiki/Hamiltonian_mechanics">Hamiltonian mechanics</a> of the system; instead, they reproduce a closely related “shadow” Hamiltonian whose value they conserve many orders of magnitude more closely.</p>
+
+<p>https://www.youtube.com/watch?v=VyaJVuRaW9E
+<img src="http://www.reactiongifs.com/r/bth.gif" alt="" /></p>
+
+<h2 id="paper-presentation---fepr">Paper Presentation - FEPR</h2>
+
+<p>This week we have paper presentations and I talk about this paper to the class, Fast Energy Projection for Real-time Simulation of Deformable Objects by Dinev, Liu et. al. Reference links are at the bottom.</p>
+
+<div class="message">
+### Disclaimer
+Tiantian Liu made a much better video explaining the paper. You can find that in the references as well. My presentation is very much tailored to the class and what we know collectively, which is not that much.
+</div>
+
+<video controls="" width="700" src="https://drive.google.com/file/d/1HaLMeuPThhnI89ivUBvjGqwPY6JzKF7Z/preview"></video>
+
+<p>The link to the slides is http://bit.ly/yuifepr</p>
+
+<h4 id="references">References</h4>
+<ul>
+  <li><a href="https://www.cs.utah.edu/~ladislav/dinev18FEPR/dinev18FEPR.html">FEPR: Fast Energy Projection for Real-time Simulation of Deformable Objects</a></li>
+  <li><a href="https://www.youtube.com/watch?v=xyB-VlesB-M">Superior video by Liu explaining the method they used</a></li>
+  <li><a href="http://box2d.org/files/GDC2015/ErinCatto_NumericalMethods.pdf">Erin Catto’s slides with the mass-spring phase portrait</a></li>
+  <li><a href="http://matthias-mueller-fischer.ch/publications/posBasedDyn.pdf">Position-based Dynamics</a></li>
+  <li><a href="https://www.cs.utah.edu/~ladislav/bouaziz14projective/bouaziz14projective.pdf">Projective Dynamics</a></li>
+  <li><a href="http://www.cs.columbia.edu/cg/pdfs/131-ESIC.pdf">Fast Projection (Goldenthal et al)</a></li>
+  <li><a href="https://stanford.edu/class/ee103/lectures/matrix_examples_slides.pdf">Selector Matrices</a></li>
+</ul>
+
+<h2 id="final-project-presentation">Final Project Presentation</h2>
+
+<iframe src="https://drive.google.com/file/d/1sxFrRZN9afnka3dR_s0ui9CiJLRZiG28/preview" width="700" height="800"></iframe>
+:ET

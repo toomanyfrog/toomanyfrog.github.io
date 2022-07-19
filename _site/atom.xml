@@ -1,209 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
- <title>Lanyon</title>
+ <title>blog.yui.codes</title>
  <link href="http://162.243.174.80:4000/atom.xml" rel="self"/>
  <link href="http://162.243.174.80:4000/"/>
- <updated>2022-06-22T23:56:13+00:00</updated>
+ <updated>2022-07-19T21:53:36+00:00</updated>
  <id>http://162.243.174.80:4000</id>
  <author>
-   <name>Mark Otto</name>
-   <email>markdotto@gmail.com</email>
+   <name>yui</name>
+   <email>yui@yui.codes</email>
  </author>
 
  
  <entry>
-   <title>Introducing Lanyon</title>
-   <link href="http://162.243.174.80:4000/2020/04/03/introducing-lanyon/"/>
-   <updated>2020-04-03T00:00:00+00:00</updated>
-   <id>http://162.243.174.80:4000/2020/04/03/introducing-lanyon</id>
-   <content type="html">&lt;p&gt;Lanyon is an unassuming &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; theme that places content first by tucking away navigation in a hidden drawer. It’s based on &lt;a href=&quot;http://getpoole.com&quot;&gt;Poole&lt;/a&gt;, the Jekyll butler.&lt;/p&gt;
+   <title>ue4 lighting learning notes</title>
+   <link href="http://162.243.174.80:4000/2022/07/16/lighting-ue4-notes/"/>
+   <updated>2022-07-16T00:00:00+00:00</updated>
+   <id>http://162.243.174.80:4000/2022/07/16/lighting-ue4-notes</id>
+   <content type="html">&lt;p&gt;hi! its been maybe a couple years. i’ve been stagnating. i know. but i’m not anymore and that’s what matters. recently i am learning lighting for games/real-time in ue4 (but maybe also 5?) and i thought i would just post my learning notes here as i go.&lt;/p&gt;
 
-&lt;h3 id=&quot;built-on-poole&quot;&gt;Built on Poole&lt;/h3&gt;
+&lt;h2 id=&quot;week-01-exterior-environment-part-1&quot;&gt;week 01: exterior environment part 1&lt;/h2&gt;
 
-&lt;p&gt;Poole is the Jekyll Butler, serving as an upstanding and effective foundation for Jekyll themes by &lt;a href=&quot;https://twitter.com/mdo&quot;&gt;@mdo&lt;/a&gt;. Poole, and every theme built on it (like Lanyon here) includes the following:&lt;/p&gt;
+&lt;h4 id=&quot;ill-come-back-to-this-learning-list-later-for-sure&quot;&gt;i’ll come back to this learning list later, for sure…&lt;/h4&gt;
+&lt;p&gt;[ ] How to think about lighting for games, from a practical production POV.
+[ ] Considering player pathing, and mood.
+[ ] Gathering reference.
+[ ] Setting up the sun direction, color, and intensity.
+[ ] Setting up the sky light. (IBL)
+[ ] Setting up the sky dome.
+[ ] Setting up simple reflections.
+[ ] Setting up a lightmass importance volume.
+[ ] Baking a GI solution.
+[ ] Understanding the bake
+[ ] Runtime vs Pre-Computed
+[ ] Direct vs Indirect Lighting&lt;/p&gt;
 
+&lt;p&gt;&lt;img src=&quot;/_media/_images/2022.07.17-14.55.14_ue4_week1_castle_warm.png&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;/_media/_images/2022.07.17-14.56.30_ue4_week1_castle_warm.png&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;/_media/_images/2022.07.17-14.57.34_ue4_week1_castle_warm.png&quot; alt=&quot;&quot; /&gt;
+for the first scene - i focused on the outdoor lighting using only the skybox and directional light. so i didn’t capture the interior since it is all very dark. and thought about the player’s path into the castle. the geometry on the castle exterior didn’t lend itself to visually lead the player to the castle, so i chose a low sun that would encourage the player to walk forward even with nothing else that was visually interesting.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/_media/_images/2022.07.17-21.46.51_ue4_week1_castle_cold.png&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;/_media/_images/2022.07.17-21.47.55_ue4_week1_castle_cold.png&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;/_media/_images/2022.07.17-22.01.28_ue4_week1_castle_cold.png&quot; alt=&quot;&quot; /&gt;
+for the second scene, i wanted to play up the ice vs fire theme with a cold sky light. i chose a low contrast sky texture. and i started to experiment with some of the lights that weren’t covered, like area and point lights. but i think there is some foundational knowledge that i need to clarify. like which lights contribute to the bake, or which are static and which are dynamic? i wanted the cold light to stream in from that gap in the castle rocks to visually divide the space but was unable to achieve the effect i wanted with just local lights (i.e. not a full-on directional light, which i don’t want to use because that’s needed for the exterior environment). as you can see in img #6 the strip of light extending past the hard shadow-line from the directional light is very weak in comparison. i also tried to experiment with some volumetric fog but i couldn’t get it the way i wanted. particles would have helped but i want to see how much we can accomplish with just the basic blocks.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/_media/_images/2022.07.17-problems.png&quot; alt=&quot;&quot; /&gt;
+i attached some screenshots of issues that i ran into. mainly my doubts are which lights are influencing the bake, and which objects get to have baked lights (i found that objects which are controlled dynamically can not have baked light textures, which i guess makes sense lol). i also ran into a weird thing with the second scene where i have a ghost light falling onto a wall in the pretty dark/enclosed room.. i was using local lights to enhance it/give the illusion of the exterior directional light doing all the work, but couldn’t find the culprit of that one..&lt;/p&gt;
+
+&lt;p&gt;lastly, i have some technical or workflow questions (which are maybe better asked in the q&amp;amp;a? i will ask them if we have time. but also post it here in case you could answer them!):&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;Complete Jekyll setup included (layouts, config, &lt;a href=&quot;/404&quot;&gt;404&lt;/a&gt;, &lt;a href=&quot;/atom.xml&quot;&gt;RSS feed&lt;/a&gt;, posts, and &lt;a href=&quot;/about&quot;&gt;example page&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Mobile friendly design and development&lt;/li&gt;
-  &lt;li&gt;Easily scalable text and component sizing with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rem&lt;/code&gt; units in the CSS&lt;/li&gt;
-  &lt;li&gt;Support for a wide gamut of HTML elements&lt;/li&gt;
-  &lt;li&gt;Related posts (time-based, because Jekyll) below each post&lt;/li&gt;
-  &lt;li&gt;Syntax highlighting, courtesy Pygments (the Python-based code snippet highlighter)&lt;/li&gt;
+  &lt;li&gt;is there a performance impact by making the skybox material rotatable + real-time capture on the sky light? since omar did not do that in the demo and just offset the hdri in photoshop.&lt;/li&gt;
+  &lt;li&gt;when looking out for things like contrast and exposure, should we try to achieve that with just lights before turning to post-processing? i understand adding every new light leads to a significant render cost. what’s a good rule of thumb for this?&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h3 id=&quot;lanyon-features&quot;&gt;Lanyon features&lt;/h3&gt;
-
-&lt;p&gt;In addition to the features of Poole, Lanyon adds the following:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Toggleable sliding sidebar (built with only CSS) via &lt;strong&gt;☰&lt;/strong&gt; link in top corner&lt;/li&gt;
-  &lt;li&gt;Sidebar includes support for textual modules and a dynamically generated navigation with active link support&lt;/li&gt;
-  &lt;li&gt;Two orientations for content and sidebar, default (left sidebar) and &lt;a href=&quot;https://github.com/poole/lanyon#reverse-layout&quot;&gt;reverse&lt;/a&gt; (right sidebar), available via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;body&amp;gt;&lt;/code&gt; classes&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/poole/lanyon#themes&quot;&gt;Eight optional color schemes&lt;/a&gt;, available via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;body&amp;gt;&lt;/code&gt; classes&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/poole/lanyon#readme&quot;&gt;Head to the readme&lt;/a&gt; to learn more.&lt;/p&gt;
-
-&lt;h3 id=&quot;browser-support&quot;&gt;Browser support&lt;/h3&gt;
-
-&lt;p&gt;Lanyon is by preference a forward-thinking project. In addition to the latest versions of Chrome, Safari (mobile and desktop), and Firefox, it is only compatible with Internet Explorer 9 and above.&lt;/p&gt;
-
-&lt;h3 id=&quot;download&quot;&gt;Download&lt;/h3&gt;
-
-&lt;p&gt;Lanyon is developed on and hosted with GitHub. Head to the &lt;a href=&quot;https://github.com/poole/lanyon&quot;&gt;GitHub repository&lt;/a&gt; for downloads, bug reports, and features requests.&lt;/p&gt;
-
-&lt;p&gt;Thanks!&lt;/p&gt;
 </content>
  </entry>
  
  <entry>
-   <title>Example content</title>
-   <link href="http://162.243.174.80:4000/2020/04/02/example-content/"/>
-   <updated>2020-04-02T00:00:00+00:00</updated>
-   <id>http://162.243.174.80:4000/2020/04/02/example-content</id>
-   <content type="html">&lt;div class=&quot;message&quot;&gt;
-  Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
+   <title>notes on energy drift in time integrators</title>
+   <link href="http://162.243.174.80:4000/2019/04/10/time-integration/"/>
+   <updated>2019-04-10T00:00:00+00:00</updated>
+   <id>http://162.243.174.80:4000/2019/04/10/time-integration</id>
+   <content type="html">&lt;h2 id=&quot;final-project-idea&quot;&gt;Final Project Idea&lt;/h2&gt;
+
+&lt;p&gt;Energy drift - usually damping - is substantial for numerical integration schemes that are not &lt;a href=&quot;https://en.wikipedia.org/wiki/Symplectic_integrator&quot;&gt;symplectic&lt;/a&gt;, such as the &lt;a href=&quot;https://en.wikipedia.org/wiki/Runge-Kutta&quot;&gt;Runge-Kutta&lt;/a&gt; family.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.05.00-PM-1024x619.png&quot; alt=&quot;&quot; class=&quot;wp-image-394&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.05.18-PM-1024x628.png&quot; alt=&quot;&quot; class=&quot;wp-image-395&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.05.45-PM-1024x542.png&quot; alt=&quot;&quot; class=&quot;wp-image-396&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.05.53-PM-1024x597.png&quot; alt=&quot;&quot; class=&quot;wp-image-397&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.06.07-PM-1024x634.png&quot; alt=&quot;&quot; class=&quot;wp-image-398&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.06.13-PM-1024x642.png&quot; alt=&quot;&quot; class=&quot;wp-image-399&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Symplectic integrators usually used in molecular dynamics, such as the &lt;a href=&quot;https://en.wikipedia.org/wiki/Verlet_integration&quot;&gt;Verlet integrator&lt;/a&gt; family, exhibit increases in energy over very long time scales, though the error remains roughly constant. These integrators do not in fact reproduce the &lt;a href=&quot;https://en.wikipedia.org/wiki/Hamiltonian_mechanics&quot;&gt;Hamiltonian mechanics&lt;/a&gt; of the system; instead, they reproduce a closely related “shadow” Hamiltonian whose value they conserve many orders of magnitude more closely.&lt;/p&gt;
+
+&lt;p&gt;https://www.youtube.com/watch?v=VyaJVuRaW9E
+&lt;img src=&quot;http://www.reactiongifs.com/r/bth.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;paper-presentation---fepr&quot;&gt;Paper Presentation - FEPR&lt;/h2&gt;
+
+&lt;p&gt;This week we have paper presentations and I talk about this paper to the class, Fast Energy Projection for Real-time Simulation of Deformable Objects by Dinev, Liu et. al. Reference links are at the bottom.&lt;/p&gt;
+
+&lt;div class=&quot;message&quot;&gt;
+### Disclaimer
+Tiantian Liu made a much better video explaining the paper. You can find that in the references as well. My presentation is very much tailored to the class and what we know collectively, which is not that much.
 &lt;/div&gt;
 
-&lt;p&gt;Cum sociis natoque penatibus et magnis &lt;a href=&quot;#&quot;&gt;dis parturient montes&lt;/a&gt;, nascetur ridiculus mus. &lt;em&gt;Aenean eu leo quam.&lt;/em&gt; Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.&lt;/p&gt;
+&lt;video controls=&quot;&quot; width=&quot;700&quot; src=&quot;https://drive.google.com/file/d/1HaLMeuPThhnI89ivUBvjGqwPY6JzKF7Z/preview&quot;&gt;&lt;/video&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;The link to the slides is http://bit.ly/yuifepr&lt;/p&gt;
 
-&lt;p&gt;Etiam porta &lt;strong&gt;sem malesuada magna&lt;/strong&gt; mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.&lt;/p&gt;
-
-&lt;h2 id=&quot;inline-html-elements&quot;&gt;Inline HTML elements&lt;/h2&gt;
-
-&lt;p&gt;HTML defines a long list of available inline tags, a complete list of which can be found on the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTML/Element&quot;&gt;Mozilla Developer Network&lt;/a&gt;.&lt;/p&gt;
-
+&lt;h4 id=&quot;references&quot;&gt;References&lt;/h4&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;To bold text&lt;/strong&gt;, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;strong&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;To italicize text&lt;/em&gt;, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;em&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Abbreviations, like &lt;abbr title=&quot;HyperText Markup Langage&quot;&gt;HTML&lt;/abbr&gt; should use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;abbr&amp;gt;&lt;/code&gt;, with an optional &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;title&lt;/code&gt; attribute for the full phrase.&lt;/li&gt;
-  &lt;li&gt;Citations, like &lt;cite&gt;— Mark otto&lt;/cite&gt;, should use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;cite&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;del&gt;Deleted&lt;/del&gt; text should use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;del&amp;gt;&lt;/code&gt; and &lt;ins&gt;inserted&lt;/ins&gt; text should use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;ins&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Superscript &lt;sup&gt;text&lt;/sup&gt; uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;sup&amp;gt;&lt;/code&gt; and subscript &lt;sub&gt;text&lt;/sub&gt; uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;sub&amp;gt;&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.cs.utah.edu/~ladislav/dinev18FEPR/dinev18FEPR.html&quot;&gt;FEPR: Fast Energy Projection for Real-time Simulation of Deformable Objects&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=xyB-VlesB-M&quot;&gt;Superior video by Liu explaining the method they used&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://box2d.org/files/GDC2015/ErinCatto_NumericalMethods.pdf&quot;&gt;Erin Catto’s slides with the mass-spring phase portrait&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://matthias-mueller-fischer.ch/publications/posBasedDyn.pdf&quot;&gt;Position-based Dynamics&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.cs.utah.edu/~ladislav/bouaziz14projective/bouaziz14projective.pdf&quot;&gt;Projective Dynamics&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.cs.columbia.edu/cg/pdfs/131-ESIC.pdf&quot;&gt;Fast Projection (Goldenthal et al)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://stanford.edu/class/ee103/lectures/matrix_examples_slides.pdf&quot;&gt;Selector Matrices&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Most of these elements are styled by browsers with few modifications on our part.&lt;/p&gt;
+&lt;h2 id=&quot;final-project-presentation&quot;&gt;Final Project Presentation&lt;/h2&gt;
 
-&lt;h2 id=&quot;heading&quot;&gt;Heading&lt;/h2&gt;
-
-&lt;p&gt;Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.&lt;/p&gt;
-
-&lt;h3 id=&quot;code&quot;&gt;Code&lt;/h3&gt;
-
-&lt;p&gt;Cum sociis natoque penatibus et magnis dis &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;code element&lt;/code&gt; montes, nascetur ridiculus mus.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Example can be run directly in your JavaScript console
-&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Create a function that takes two arguments and returns the sum of those arguments
-&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;adder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;return a + b&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Call the function
-&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;adder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// &amp;gt; 8&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.&lt;/p&gt;
-
-&lt;h3 id=&quot;lists&quot;&gt;Lists&lt;/h3&gt;
-
-&lt;p&gt;Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/li&gt;
-  &lt;li&gt;Donec id elit non mi porta gravida at eget metus.&lt;/li&gt;
-  &lt;li&gt;Nulla vitae elit libero, a pharetra augue.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Vestibulum id ligula porta felis euismod semper.&lt;/li&gt;
-  &lt;li&gt;Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.&lt;/li&gt;
-  &lt;li&gt;Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.&lt;/p&gt;
-
-&lt;dl&gt;
-  &lt;dt&gt;HyperText Markup Language (HTML)&lt;/dt&gt;
-  &lt;dd&gt;The language used to describe and define the content of a Web page&lt;/dd&gt;
-
-  &lt;dt&gt;Cascading Style Sheets (CSS)&lt;/dt&gt;
-  &lt;dd&gt;Used to describe the appearance of Web content&lt;/dd&gt;
-
-  &lt;dt&gt;JavaScript (JS)&lt;/dt&gt;
-  &lt;dd&gt;The programming language used to build advanced Web sites and applications&lt;/dd&gt;
-&lt;/dl&gt;
-
-&lt;p&gt;Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo.&lt;/p&gt;
-
-&lt;h3 id=&quot;tables&quot;&gt;Tables&lt;/h3&gt;
-
-&lt;p&gt;Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Name&lt;/th&gt;
-      &lt;th&gt;Upvotes&lt;/th&gt;
-      &lt;th&gt;Downvotes&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tfoot&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Totals&lt;/td&gt;
-      &lt;td&gt;21&lt;/td&gt;
-      &lt;td&gt;23&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tfoot&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Alice&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-      &lt;td&gt;11&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Bob&lt;/td&gt;
-      &lt;td&gt;4&lt;/td&gt;
-      &lt;td&gt;3&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Charlie&lt;/td&gt;
-      &lt;td&gt;7&lt;/td&gt;
-      &lt;td&gt;9&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Want to see something else added? &lt;a href=&quot;https://github.com/poole/poole/issues/new&quot;&gt;Open an issue.&lt;/a&gt;&lt;/p&gt;
+&lt;iframe src=&quot;https://drive.google.com/file/d/1sxFrRZN9afnka3dR_s0ui9CiJLRZiG28/preview&quot; width=&quot;700&quot; height=&quot;800&quot;&gt;&lt;/iframe&gt;
 </content>
  </entry>
  
  <entry>
-   <title>What's Jekyll?</title>
-   <link href="http://162.243.174.80:4000/2020/04/01/whats-jekyll/"/>
-   <updated>2020-04-01T00:00:00+00:00</updated>
-   <id>http://162.243.174.80:4000/2020/04/01/whats-jekyll</id>
-   <content type="html">&lt;p&gt;&lt;a href=&quot;https://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. From &lt;a href=&quot;https://github.com/mojombo/jekyll/blob/master/README.markdown&quot;&gt;the project’s readme&lt;/a&gt;:&lt;/p&gt;
+   <title>notes on particle-based systems and deformables</title>
+   <link href="http://162.243.174.80:4000/2019/03/20/deformables/"/>
+   <updated>2019-03-20T00:00:00+00:00</updated>
+   <id>http://162.243.174.80:4000/2019/03/20/deformables</id>
+   <content type="html">&lt;p&gt;Unified particle-based system: 
+Smoke done by advecting tiny particles along velocities provided by unified particle system.
+Seems like it is a lot of non-physically-based implementations, for example, rigidbody collisions don’t work that way.
+But it is convenient to have everything using the same system (maybe).&lt;/p&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;Jekyll is a simple, blog aware, static site generator. It takes a template directory […] and spits out a complete, static website suitable for serving with Apache or your favorite web server. This is also the engine behind GitHub Pages, which you can use to host your project’s page or blog right here from GitHub.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;h3 id=&quot;deformables&quot;&gt;Deformables&lt;/h3&gt;
+&lt;h4 id=&quot;position-based-dynamics-pbd&quot;&gt;Position-based Dynamics (PBD)&lt;/h4&gt;
 
-&lt;p&gt;It’s an immensely useful tool and one we encourage you to use here with Lanyon.&lt;/p&gt;
+&lt;p&gt;At first, Position-based Dynamics seems to be similar to Verlet integrator, which I have previously used for cloth simulation. However, the author highlights that where Verlet stores velocity implicitly with the previous and current position, PBD uses velocities explicitly.&lt;/p&gt;
 
-&lt;p&gt;Find out more by &lt;a href=&quot;https://github.com/mojombo/jekyll&quot;&gt;visiting the project on GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://i1.wp.com/yuiwei.com/wp-content/uploads/2019/04/pbd1.png?fit=764%2C677&quot; alt=&quot;&quot; class=&quot;wp-image-714&quot; /&gt;&lt;img src=&quot;https://i2.wp.com/yuiwei.com/wp-content/uploads/2019/04/pbd2.png?fit=764%2C642&quot; alt=&quot;&quot; class=&quot;wp-image-715&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Later, I realised that for PBD, we try to treat everything as a constraint, including forces (except general forces like gravity, see my annotation on algorithm. When we used position constraints in the cloth simulation, it seemed to automatically correct for any instabilities given by the numerical integration method. But actually when everything is made into a constraint, this seems to shift the problem from the integration step to the constraint solver. As a result, the stability of PBD no longer depends on time-step but on the shape of the constraint functions.&lt;/p&gt;
+
+&lt;p&gt;TODO: look more into XPBD. Updates soon.&lt;/p&gt;
+
+&lt;h4 id=&quot;finite-element-method&quot;&gt;Finite Element Method&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i2.wp.com/yuiwei.com/wp-content/uploads/2019/04/fracture.png?fit=764%2C556&quot; alt=&quot;&quot; class=&quot;wp-image-712&quot; /&gt;&lt;img src=&quot;https://i2.wp.com/yuiwei.com/wp-content/uploads/2019/04/fracture2.png?fit=764%2C662&quot; alt=&quot;&quot; class=&quot;wp-image-713&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The paper “Breaking Things” video by O’Brien and Hodgins uses continuous model and finite elements made up of tetrahedrons. I was unclear on the meaning of the vector &lt;strong&gt;&lt;em&gt;u&lt;/em&gt;&lt;/strong&gt; in the equations as it does not correspond to vertex locations, instead it refers to the location of the element? Do we just take the center of the tetrahedron as &lt;strong&gt;&lt;em&gt;u&lt;/em&gt;&lt;/strong&gt;? 
+Additionally, they say that the rows of &lt;em&gt;β&lt;/em&gt; are the coefficients of the shape functions, which I don’t understand.&lt;/p&gt;
+
+&lt;h4 id=&quot;projective-dynamics&quot;&gt;Projective Dynamics&lt;/h4&gt;
+
+&lt;p&gt;For PBD the constraint solver which does most of the work does it in a “Gauss-Seidel-like fashion”, which means solving each constraint individually independent of each other. When we project particles, the modifications are visible to the process, so the order of constraints is extremely important. For projective dynamics, constraints are taken from a local/global optimization perspective. The authors say that PBD converges to inelastic behaviour (I’m not sure why yet) and PD converges to the “true implicit Euler solution”.&lt;/p&gt;
+
+&lt;p&gt;TODO: Self-study on deformables (lit review)&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>week 4-5</title>
+   <link href="http://162.243.174.80:4000/2019/02/11/class-notes-2/"/>
+   <updated>2019-02-11T00:00:00+00:00</updated>
+   <id>http://162.243.174.80:4000/2019/02/11/class-notes-2</id>
+   <content type="html">&lt;h3 id=&quot;motion-editing&quot;&gt;Motion Editing&lt;/h3&gt;
+
+&lt;p&gt;We looked at PRECISION which can figure out what motions go with new geometry. I feel like this tool makes it much easier for large quantities of content in games and animations; however, it didn’t seem like the artists had much control over how animations might look. There were also issues with transitioning between fixed motion captured animations.&lt;/p&gt;
+
+&lt;h3 id=&quot;skinning&quot;&gt;Skinning&lt;/h3&gt;
+&lt;p&gt;Linear Blend Skinning is intuitive but the candy-wrapper problem is well known. Dual quaternion skinning I feel is a really smart way of using mathematical properties of quaternions to avoid the candy wrapper effect. But to be honest, skinning of organic bodies to skeletons has a lot of variations that can’t be described just by one algorithm. I guess that’s why there are still so many artists working to do weight-painting all the time.&lt;/p&gt;
+
+&lt;p&gt;On the note of artist input, we looked at &lt;a href=&quot;https://graphics.ethz.ch/publications/papers/paperOzt13.php&quot;&gt;this&lt;/a&gt; paper for using line-of-action concept to generate 3D poses. Although this seemed like a very time-efficient method, the poses generated still needed to be tweaked by artists a fair bit, so I think the added value is not that much.&lt;/p&gt;
+
+&lt;p&gt;On the topic of weight painting, we also looked at &lt;a href=&quot;http://motionlab.kaist.ac.kr/wp-content/uploads/2018/09/SplineSkinning_TOG_CameraReady.pdf&quot;&gt;this&lt;/a&gt; paper on spline-based weight painting. This concept was really exciting to me as an artist who has always found Maya’s weight painting tools to feel very clumsy. Especially because it is hard to tell when your weight painting is blended properly:
+&lt;img src=&quot;http://www.3dfiggins.com/writeups/paintingWeights/contents/fig24_knuckle_smoothed.jpg&quot; alt=&quot;&quot; /&gt;
+Picture taken from &lt;a href=&quot;http://www.3dfiggins.com/writeups/paintingWeights/&quot;&gt;this really good resource&lt;/a&gt; for learning how difficult and complex the weight-painting process is!&lt;/p&gt;
+
+&lt;p&gt;Using splines to determine the falloff or interpolation of weights seems very elegant. Although I have yet to try using a system like that.&lt;/p&gt;
+
+&lt;p&gt;Using cages to warp the mesh seemed like a really intuitive idea as well. We see cage methods all the time in 2D animation software. I’m pretty sure &lt;a href=&quot;https://www.live2d.com/en/about/whats_live2d&quot;&gt;Live2D &lt;/a&gt;is using a cage deformation method, and it has some really beautiful results. I’m really curious why we don’t see cage methods in 3D more often. It seems really convenient, there are different methods for applying the cage transform to the cuboid or tetrahedron that can be used for artist control. Perhaps it is more difficult to determine what happens at the joints.&lt;/p&gt;
+
+&lt;p&gt;We also looked at implicit functions for mesh wrapping. Seems like we use a bounding mesh as a “cage”, and the bounding mesh can be represented by an implicit function. This method seems like it will not be able to take care of sharp details that well. I also want to read more on implicit functions for meshes as the meta-balls or blobbys idea is unfamiliar to me.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>week 1-3</title>
+   <link href="http://162.243.174.80:4000/2019/02/04/class-notes/"/>
+   <updated>2019-02-04T00:00:00+00:00</updated>
+   <id>http://162.243.174.80:4000/2019/02/04/class-notes</id>
+   <content type="html">&lt;h2 id=&quot;week-1-techniques-for-creating-animation&quot;&gt;Week 1: Techniques for creating animation&lt;/h2&gt;
+&lt;p&gt;2D animators make use of keyframes to get poses before doing in-betweens. In 3D, keyframes can be set and automatically tweened. In 2D animation, they often make use of 2s due to not doing all in between frames for 24 fps. In the recent Spiderman animated movie, it was interesting to see that they sometimes used 2s in 3D by stepping the animation curves between keyframes as a stylistic choice.&lt;/p&gt;
+
+&lt;p&gt;Procedural animation has some really cool applications - automatic skinning and animation has been used in games like Spore, where players can make their own creatures. Procedural generation of variants in animation can also help generate some natural look to character’s scripted animation.&lt;/p&gt;
+
+&lt;h2 id=&quot;week-2-3-inverse-kinematics&quot;&gt;Week 2-3: Inverse Kinematics&lt;/h2&gt;
+
+&lt;p&gt;In Week 2, we visited Motion Capture lab in CMU. As I’ve never been in a motion capture lab before, this experience was really enlightening for me. They use infrared cameras and plastic balls wrapped in reflective tape to capture positional data. There were different sized reflective balls for different types of data. For facial capture, the motion capture lab assistant has to reconfigure and calibrate all the infrared cameras. I’ve not used any motion capture system calibration and capture software before, but I think it might be similar to camera calibration systems in computer vision for 3D reconstruction, which I am somewhat more familiar with.&lt;/p&gt;
+
+&lt;h3 id=&quot;inverse-kinematics-methods&quot;&gt;Inverse Kinematics Methods&lt;/h3&gt;
+
+&lt;p&gt;We talked about Jacobian transpose, pseudo-inverse and damped least squares method. We have to implement an inverse kinematics solution for Miniproject 1. Previously I have implemented CCD and I remember it was pretty fast. I seem to have lost my implementation to poor organisation in my filesystem but I did find my pseudo-inverse implementation! Which is much slower!&lt;/p&gt;
+
+&lt;video controls=&quot;&quot; src=&quot;http://yuiwei.com/wp-content/uploads/2019/03/ikfkccd.mp4&quot;&gt;&lt;/video&gt;
+
+&lt;p&gt;Anyway, I can’t remember most of my implementation so I’m looking forward to doing it again. It will be a good chance to revise what I learned. We also looked at more heuristic methods, like CCD. I have heard of FABRIK before, but not from class. Mostly from videos on the internet. But learning about it in class, it seemed really intuitive and to have really nice results. I might try my hand at implementing it somewhere.&lt;/p&gt;
 </content>
  </entry>
  
