@@ -24,7 +24,7 @@ hi! its been maybe a couple years. i've been stagnating. i know. but i'm not any
 
 ![](/_media/_images/2022.07.17-14.55.14_ue4_week1_castle_warm.png)
 ![](/_media/_images/2022.07.17-14.56.30_ue4_week1_castle_warm.png)
-![](/_media/_images/2022.07.17-14.57.34_ue4_week1_castle_warm.png)
+![](/_media/_images/2022-07-17-ue4_week1_castle_warm3.png)
 for the first scene - i focused on the outdoor lighting using only the skybox and directional light. so i didn't capture the interior since it is all very dark. and thought about the player's path into the castle. the geometry on the castle exterior didn't lend itself to visually lead the player to the castle, so i chose a low sun that would encourage the player to walk forward even with nothing else that was visually interesting. 
 
 ![](/_media/_images/2022.07.17-21.46.51_ue4_week1_castle_cold.png)
