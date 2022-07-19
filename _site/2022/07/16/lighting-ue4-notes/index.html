@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      ue4 lighting learning notes &middot; blog.yui.codes
+    
+  </title>
+
+  
+  <link rel="canonical" href="http://162.243.174.80:4000/2022/07/16/lighting-ue4-notes/">
+  
+
+  <link rel="stylesheet" href="http://162.243.174.80:4000/public/css/poole.css">
+  <link rel="stylesheet" href="http://162.243.174.80:4000/public/css/syntax.css">
+  <link rel="stylesheet" href="http://162.243.174.80:4000/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://162.243.174.80:4000/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="http://162.243.174.80:4000/public/favicon.ico">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://162.243.174.80:4000/atom.xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Abel&family=Source+Code+Pro:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"> 
+
+  
+</head>
+
+
+  <body class=""theme-base-0f>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>a blog containing mainly learning notes and thought dumps around art+tech and tech art</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="http://162.243.174.80:4000/">home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="http://162.243.174.80:4000/ethos/">about/ethos</a>
+        
+      
+    
+      
+        
+      
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2022. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">blog.yui.codes</a>
+            <small>thought dump revolving around art+tech</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">ue4 lighting learning notes</h1>
+  <span class="post-date">16 Jul 2022 </span>
+  <p>hi! its been maybe a couple years. i’ve been stagnating. i know. but i’m not anymore and that’s what matters. recently i am learning lighting for games/real-time in ue4 (but maybe also 5?) and i thought i would just post my learning notes here as i go.</p>
+
+<h2 id="week-01-exterior-environment-part-1">week 01: exterior environment part 1</h2>
+
+<h4 id="ill-come-back-to-this-learning-list-later-for-sure">i’ll come back to this learning list later, for sure…</h4>
+<p>[ ] How to think about lighting for games, from a practical production POV.
+[ ] Considering player pathing, and mood.
+[ ] Gathering reference.
+[ ] Setting up the sun direction, color, and intensity.
+[ ] Setting up the sky light. (IBL)
+[ ] Setting up the sky dome.
+[ ] Setting up simple reflections.
+[ ] Setting up a lightmass importance volume.
+[ ] Baking a GI solution.
+[ ] Understanding the bake
+[ ] Runtime vs Pre-Computed
+[ ] Direct vs Indirect Lighting</p>
+
+<p><img src="/_media/_images/2022.07.17-14.55.14_ue4_week1_castle_warm.png" alt="" />
+<img src="/_media/_images/2022.07.17-14.56.30_ue4_week1_castle_warm.png" alt="" />
+<img src="/_media/_images/2022.07.17-14.57.34_ue4_week1_castle_warm.png" alt="" />
+for the first scene - i focused on the outdoor lighting using only the skybox and directional light. so i didn’t capture the interior since it is all very dark. and thought about the player’s path into the castle. the geometry on the castle exterior didn’t lend itself to visually lead the player to the castle, so i chose a low sun that would encourage the player to walk forward even with nothing else that was visually interesting.</p>
+
+<p><img src="/_media/_images/2022.07.17-21.46.51_ue4_week1_castle_cold.png" alt="" />
+<img src="/_media/_images/2022.07.17-21.47.55_ue4_week1_castle_cold.png" alt="" />
+<img src="/_media/_images/2022.07.17-22.01.28_ue4_week1_castle_cold.png" alt="" />
+for the second scene, i wanted to play up the ice vs fire theme with a cold sky light. i chose a low contrast sky texture. and i started to experiment with some of the lights that weren’t covered, like area and point lights. but i think there is some foundational knowledge that i need to clarify. like which lights contribute to the bake, or which are static and which are dynamic? i wanted the cold light to stream in from that gap in the castle rocks to visually divide the space but was unable to achieve the effect i wanted with just local lights (i.e. not a full-on directional light, which i don’t want to use because that’s needed for the exterior environment). as you can see in img #6 the strip of light extending past the hard shadow-line from the directional light is very weak in comparison. i also tried to experiment with some volumetric fog but i couldn’t get it the way i wanted. particles would have helped but i want to see how much we can accomplish with just the basic blocks.</p>
+
+<p><img src="/_media/_images/2022.07.17-problems.png" alt="" />
+i attached some screenshots of issues that i ran into. mainly my doubts are which lights are influencing the bake, and which objects get to have baked lights (i found that objects which are controlled dynamically can not have baked light textures, which i guess makes sense lol). i also ran into a weird thing with the second scene where i have a ghost light falling onto a wall in the pretty dark/enclosed room.. i was using local lights to enhance it/give the illusion of the exterior directional light doing all the work, but couldn’t find the culprit of that one..</p>
+
+<p>lastly, i have some technical or workflow questions (which are maybe better asked in the q&amp;a? i will ask them if we have time. but also post it here in case you could answer them!):</p>
+<ul>
+  <li>is there a performance impact by making the skybox material rotatable + real-time capture on the sky light? since omar did not do that in the demo and just offset the hdri in photoshop.</li>
+  <li>when looking out for things like contrast and exposure, should we try to achieve that with just lights before turning to post-processing? i understand adding every new light leads to a significant render cost. what’s a good rule of thumb for this?</li>
+</ul>
+
+</div>
+
+
+<div class="related">
+  <h2>Related posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2019/04/10/time-integration/">
+            notes on energy drift in time integrators
+            <small>10 Apr 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2019/03/20/deformables/">
+            notes on particle-based systems and deformables
+            <small>20 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2019/02/11/class-notes-2/">
+            week 4-5
+            <small>11 Feb 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script src='/public/js/script.js'></script>
+  </body>
+</html>

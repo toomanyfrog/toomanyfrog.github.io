@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      week 4-5 &middot; blog.yui.codes
+    
+  </title>
+
+  
+  <link rel="canonical" href="http://162.243.174.80:4000/2019/02/11/class-notes-2/">
+  
+
+  <link rel="stylesheet" href="http://162.243.174.80:4000/public/css/poole.css">
+  <link rel="stylesheet" href="http://162.243.174.80:4000/public/css/syntax.css">
+  <link rel="stylesheet" href="http://162.243.174.80:4000/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://162.243.174.80:4000/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="http://162.243.174.80:4000/public/favicon.ico">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://162.243.174.80:4000/atom.xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Abel&family=Source+Code+Pro:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"> 
+
+  
+</head>
+
+
+  <body class=""theme-base-0f>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>a blog containing mainly learning notes and thought dumps around art+tech and tech art</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="http://162.243.174.80:4000/">home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="http://162.243.174.80:4000/ethos/">about/ethos</a>
+        
+      
+    
+      
+        
+      
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2022. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">blog.yui.codes</a>
+            <small>thought dump revolving around art+tech</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">week 4-5</h1>
+  <span class="post-date">11 Feb 2019 </span>
+  <h3 id="motion-editing">Motion Editing</h3>
+
+<p>We looked at PRECISION which can figure out what motions go with new geometry. I feel like this tool makes it much easier for large quantities of content in games and animations; however, it didn’t seem like the artists had much control over how animations might look. There were also issues with transitioning between fixed motion captured animations.</p>
+
+<h3 id="skinning">Skinning</h3>
+<p>Linear Blend Skinning is intuitive but the candy-wrapper problem is well known. Dual quaternion skinning I feel is a really smart way of using mathematical properties of quaternions to avoid the candy wrapper effect. But to be honest, skinning of organic bodies to skeletons has a lot of variations that can’t be described just by one algorithm. I guess that’s why there are still so many artists working to do weight-painting all the time.</p>
+
+<p>On the note of artist input, we looked at <a href="https://graphics.ethz.ch/publications/papers/paperOzt13.php">this</a> paper for using line-of-action concept to generate 3D poses. Although this seemed like a very time-efficient method, the poses generated still needed to be tweaked by artists a fair bit, so I think the added value is not that much.</p>
+
+<p>On the topic of weight painting, we also looked at <a href="http://motionlab.kaist.ac.kr/wp-content/uploads/2018/09/SplineSkinning_TOG_CameraReady.pdf">this</a> paper on spline-based weight painting. This concept was really exciting to me as an artist who has always found Maya’s weight painting tools to feel very clumsy. Especially because it is hard to tell when your weight painting is blended properly:
+<img src="http://www.3dfiggins.com/writeups/paintingWeights/contents/fig24_knuckle_smoothed.jpg" alt="" />
+Picture taken from <a href="http://www.3dfiggins.com/writeups/paintingWeights/">this really good resource</a> for learning how difficult and complex the weight-painting process is!</p>
+
+<p>Using splines to determine the falloff or interpolation of weights seems very elegant. Although I have yet to try using a system like that.</p>
+
+<p>Using cages to warp the mesh seemed like a really intuitive idea as well. We see cage methods all the time in 2D animation software. I’m pretty sure <a href="https://www.live2d.com/en/about/whats_live2d">Live2D </a>is using a cage deformation method, and it has some really beautiful results. I’m really curious why we don’t see cage methods in 3D more often. It seems really convenient, there are different methods for applying the cage transform to the cuboid or tetrahedron that can be used for artist control. Perhaps it is more difficult to determine what happens at the joints.</p>
+
+<p>We also looked at implicit functions for mesh wrapping. Seems like we use a bounding mesh as a “cage”, and the bounding mesh can be represented by an implicit function. This method seems like it will not be able to take care of sharp details that well. I also want to read more on implicit functions for meshes as the meta-balls or blobbys idea is unfamiliar to me.</p>
+
+</div>
+
+
+<div class="related">
+  <h2>Related posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2022/07/16/lighting-ue4-notes/">
+            ue4 lighting learning notes
+            <small>16 Jul 2022</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2019/04/10/time-integration/">
+            notes on energy drift in time integrators
+            <small>10 Apr 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2019/03/20/deformables/">
+            notes on particle-based systems and deformables
+            <small>20 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script src='/public/js/script.js'></script>
+  </body>
+</html>

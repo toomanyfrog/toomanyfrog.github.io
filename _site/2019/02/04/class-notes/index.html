@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      week 1-3 &middot; blog.yui.codes
+    
+  </title>
+
+  
+  <link rel="canonical" href="http://162.243.174.80:4000/2019/02/04/class-notes/">
+  
+
+  <link rel="stylesheet" href="http://162.243.174.80:4000/public/css/poole.css">
+  <link rel="stylesheet" href="http://162.243.174.80:4000/public/css/syntax.css">
+  <link rel="stylesheet" href="http://162.243.174.80:4000/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://162.243.174.80:4000/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="http://162.243.174.80:4000/public/favicon.ico">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://162.243.174.80:4000/atom.xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Abel&family=Source+Code+Pro:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"> 
+
+  
+</head>
+
+
+  <body class=""theme-base-0f>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>a blog containing mainly learning notes and thought dumps around art+tech and tech art</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="http://162.243.174.80:4000/">home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="http://162.243.174.80:4000/ethos/">about/ethos</a>
+        
+      
+    
+      
+        
+      
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2022. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">blog.yui.codes</a>
+            <small>thought dump revolving around art+tech</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">week 1-3</h1>
+  <span class="post-date">04 Feb 2019 </span>
+  <h2 id="week-1-techniques-for-creating-animation">Week 1: Techniques for creating animation</h2>
+<p>2D animators make use of keyframes to get poses before doing in-betweens. In 3D, keyframes can be set and automatically tweened. In 2D animation, they often make use of 2s due to not doing all in between frames for 24 fps. In the recent Spiderman animated movie, it was interesting to see that they sometimes used 2s in 3D by stepping the animation curves between keyframes as a stylistic choice.</p>
+
+<p>Procedural animation has some really cool applications - automatic skinning and animation has been used in games like Spore, where players can make their own creatures. Procedural generation of variants in animation can also help generate some natural look to character’s scripted animation.</p>
+
+<h2 id="week-2-3-inverse-kinematics">Week 2-3: Inverse Kinematics</h2>
+
+<p>In Week 2, we visited Motion Capture lab in CMU. As I’ve never been in a motion capture lab before, this experience was really enlightening for me. They use infrared cameras and plastic balls wrapped in reflective tape to capture positional data. There were different sized reflective balls for different types of data. For facial capture, the motion capture lab assistant has to reconfigure and calibrate all the infrared cameras. I’ve not used any motion capture system calibration and capture software before, but I think it might be similar to camera calibration systems in computer vision for 3D reconstruction, which I am somewhat more familiar with.</p>
+
+<h3 id="inverse-kinematics-methods">Inverse Kinematics Methods</h3>
+
+<p>We talked about Jacobian transpose, pseudo-inverse and damped least squares method. We have to implement an inverse kinematics solution for Miniproject 1. Previously I have implemented CCD and I remember it was pretty fast. I seem to have lost my implementation to poor organisation in my filesystem but I did find my pseudo-inverse implementation! Which is much slower!</p>
+
+<video controls="" src="http://yuiwei.com/wp-content/uploads/2019/03/ikfkccd.mp4"></video>
+
+<p>Anyway, I can’t remember most of my implementation so I’m looking forward to doing it again. It will be a good chance to revise what I learned. We also looked at more heuristic methods, like CCD. I have heard of FABRIK before, but not from class. Mostly from videos on the internet. But learning about it in class, it seemed really intuitive and to have really nice results. I might try my hand at implementing it somewhere.</p>
+
+</div>
+
+
+<div class="related">
+  <h2>Related posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2022/07/16/lighting-ue4-notes/">
+            ue4 lighting learning notes
+            <small>16 Jul 2022</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2019/04/10/time-integration/">
+            notes on energy drift in time integrators
+            <small>10 Apr 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2019/03/20/deformables/">
+            notes on particle-based systems and deformables
+            <small>20 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script src='/public/js/script.js'></script>
+  </body>
+</html>

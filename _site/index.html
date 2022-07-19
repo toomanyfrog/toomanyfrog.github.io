@@ -9,7 +9,7 @@
 
   <title>
     
-      Lanyon &middot; A Jekyll theme
+      home &middot; blog.yui.codes
     
   </title>
 
@@ -27,11 +27,16 @@
 
   <link rel="alternate" type="application/rss+xml" title="RSS" href="http://162.243.174.80:4000/atom.xml">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Abel&family=Source+Code+Pro:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"> 
+
   
 </head>
 
 
-  <body>
+  <body class=""theme-base-0f>
 
     <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
      styles, `#sidebar-checkbox` for behavior. -->
@@ -40,11 +45,11 @@
 <!-- Toggleable sidebar -->
 <div class="sidebar" id="sidebar">
   <div class="sidebar-item">
-    <p>A reserved <a href="https://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.</p>
+    <p>a blog containing mainly learning notes and thought dumps around art+tech and tech art</p>
   </div>
 
   <nav class="sidebar-nav">
-    <a class="sidebar-nav-item active" href="http://162.243.174.80:4000/">Home</a>
+    <a class="sidebar-nav-item active" href="http://162.243.174.80:4000/">home</a>
 
     
 
@@ -59,17 +64,18 @@
       
     
       
+    
+      
         
-          <a class="sidebar-nav-item" href="http://162.243.174.80:4000/about/">About</a>
+          <a class="sidebar-nav-item" href="http://162.243.174.80:4000/ethos/">about/ethos</a>
         
       
     
+      
+        
       
     
 
-    <a class="sidebar-nav-item" href="/archive/v1.1.0.zip">Download</a>
-    <a class="sidebar-nav-item" href="">GitHub project</a>
-    <span class="sidebar-nav-item">Currently v1.1.0</span>
   </nav>
 
   <div class="sidebar-item">
@@ -86,8 +92,8 @@
       <div class="masthead">
         <div class="container">
           <h3 class="masthead-title">
-            <a href="/" title="Home">Lanyon</a>
-            <small>A Jekyll theme</small>
+            <a href="/" title="Home">blog.yui.codes</a>
+            <small>thought dump revolving around art+tech</small>
           </h3>
         </div>
       </div>
@@ -97,208 +103,149 @@
   
   <div class="post">
     <h1 class="post-title">
-      <a href="http://162.243.174.80:4000/2020/04/03/introducing-lanyon/">
-        Introducing Lanyon
+      <a href="http://162.243.174.80:4000/2022/07/16/lighting-ue4-notes/">
+        ue4 lighting learning notes
       </a>
     </h1>
 
-    <span class="post-date">03 Apr 2020</span>
+    <span class="post-date">16 Jul 2022</span>
 
-    <p>Lanyon is an unassuming <a href="http://jekyllrb.com">Jekyll</a> theme that places content first by tucking away navigation in a hidden drawer. It’s based on <a href="http://getpoole.com">Poole</a>, the Jekyll butler.</p>
+    <p>hi! its been maybe a couple years. i’ve been stagnating. i know. but i’m not anymore and that’s what matters. recently i am learning lighting for games/real-time in ue4 (but maybe also 5?) and i thought i would just post my learning notes here as i go.</p>
 
-<h3 id="built-on-poole">Built on Poole</h3>
+<h2 id="week-01-exterior-environment-part-1">week 01: exterior environment part 1</h2>
 
-<p>Poole is the Jekyll Butler, serving as an upstanding and effective foundation for Jekyll themes by <a href="https://twitter.com/mdo">@mdo</a>. Poole, and every theme built on it (like Lanyon here) includes the following:</p>
+<h4 id="ill-come-back-to-this-learning-list-later-for-sure">i’ll come back to this learning list later, for sure…</h4>
+<p>[ ] How to think about lighting for games, from a practical production POV.
+[ ] Considering player pathing, and mood.
+[ ] Gathering reference.
+[ ] Setting up the sun direction, color, and intensity.
+[ ] Setting up the sky light. (IBL)
+[ ] Setting up the sky dome.
+[ ] Setting up simple reflections.
+[ ] Setting up a lightmass importance volume.
+[ ] Baking a GI solution.
+[ ] Understanding the bake
+[ ] Runtime vs Pre-Computed
+[ ] Direct vs Indirect Lighting</p>
 
+<p><img src="/_media/_images/2022.07.17-14.55.14_ue4_week1_castle_warm.png" alt="" />
+<img src="/_media/_images/2022.07.17-14.56.30_ue4_week1_castle_warm.png" alt="" />
+<img src="/_media/_images/2022.07.17-14.57.34_ue4_week1_castle_warm.png" alt="" />
+for the first scene - i focused on the outdoor lighting using only the skybox and directional light. so i didn’t capture the interior since it is all very dark. and thought about the player’s path into the castle. the geometry on the castle exterior didn’t lend itself to visually lead the player to the castle, so i chose a low sun that would encourage the player to walk forward even with nothing else that was visually interesting.</p>
+
+<p><img src="/_media/_images/2022.07.17-21.46.51_ue4_week1_castle_cold.png" alt="" />
+<img src="/_media/_images/2022.07.17-21.47.55_ue4_week1_castle_cold.png" alt="" />
+<img src="/_media/_images/2022.07.17-22.01.28_ue4_week1_castle_cold.png" alt="" />
+for the second scene, i wanted to play up the ice vs fire theme with a cold sky light. i chose a low contrast sky texture. and i started to experiment with some of the lights that weren’t covered, like area and point lights. but i think there is some foundational knowledge that i need to clarify. like which lights contribute to the bake, or which are static and which are dynamic? i wanted the cold light to stream in from that gap in the castle rocks to visually divide the space but was unable to achieve the effect i wanted with just local lights (i.e. not a full-on directional light, which i don’t want to use because that’s needed for the exterior environment). as you can see in img #6 the strip of light extending past the hard shadow-line from the directional light is very weak in comparison. i also tried to experiment with some volumetric fog but i couldn’t get it the way i wanted. particles would have helped but i want to see how much we can accomplish with just the basic blocks.</p>
+
+<p><img src="/_media/_images/2022.07.17-problems.png" alt="" />
+i attached some screenshots of issues that i ran into. mainly my doubts are which lights are influencing the bake, and which objects get to have baked lights (i found that objects which are controlled dynamically can not have baked light textures, which i guess makes sense lol). i also ran into a weird thing with the second scene where i have a ghost light falling onto a wall in the pretty dark/enclosed room.. i was using local lights to enhance it/give the illusion of the exterior directional light doing all the work, but couldn’t find the culprit of that one..</p>
+
+<p>lastly, i have some technical or workflow questions (which are maybe better asked in the q&amp;a? i will ask them if we have time. but also post it here in case you could answer them!):</p>
 <ul>
-  <li>Complete Jekyll setup included (layouts, config, <a href="/404">404</a>, <a href="/atom.xml">RSS feed</a>, posts, and <a href="/about">example page</a>)</li>
-  <li>Mobile friendly design and development</li>
-  <li>Easily scalable text and component sizing with <code class="language-plaintext highlighter-rouge">rem</code> units in the CSS</li>
-  <li>Support for a wide gamut of HTML elements</li>
-  <li>Related posts (time-based, because Jekyll) below each post</li>
-  <li>Syntax highlighting, courtesy Pygments (the Python-based code snippet highlighter)</li>
+  <li>is there a performance impact by making the skybox material rotatable + real-time capture on the sky light? since omar did not do that in the demo and just offset the hdri in photoshop.</li>
+  <li>when looking out for things like contrast and exposure, should we try to achieve that with just lights before turning to post-processing? i understand adding every new light leads to a significant render cost. what’s a good rule of thumb for this?</li>
 </ul>
-
-<h3 id="lanyon-features">Lanyon features</h3>
-
-<p>In addition to the features of Poole, Lanyon adds the following:</p>
-
-<ul>
-  <li>Toggleable sliding sidebar (built with only CSS) via <strong>☰</strong> link in top corner</li>
-  <li>Sidebar includes support for textual modules and a dynamically generated navigation with active link support</li>
-  <li>Two orientations for content and sidebar, default (left sidebar) and <a href="https://github.com/poole/lanyon#reverse-layout">reverse</a> (right sidebar), available via <code class="language-plaintext highlighter-rouge">&lt;body&gt;</code> classes</li>
-  <li><a href="https://github.com/poole/lanyon#themes">Eight optional color schemes</a>, available via <code class="language-plaintext highlighter-rouge">&lt;body&gt;</code> classes</li>
-</ul>
-
-<p><a href="https://github.com/poole/lanyon#readme">Head to the readme</a> to learn more.</p>
-
-<h3 id="browser-support">Browser support</h3>
-
-<p>Lanyon is by preference a forward-thinking project. In addition to the latest versions of Chrome, Safari (mobile and desktop), and Firefox, it is only compatible with Internet Explorer 9 and above.</p>
-
-<h3 id="download">Download</h3>
-
-<p>Lanyon is developed on and hosted with GitHub. Head to the <a href="https://github.com/poole/lanyon">GitHub repository</a> for downloads, bug reports, and features requests.</p>
-
-<p>Thanks!</p>
 
   </div>
   
   <div class="post">
     <h1 class="post-title">
-      <a href="http://162.243.174.80:4000/2020/04/02/example-content/">
-        Example content
+      <a href="http://162.243.174.80:4000/2019/04/10/time-integration/">
+        notes on energy drift in time integrators
       </a>
     </h1>
 
-    <span class="post-date">02 Apr 2020</span>
+    <span class="post-date">10 Apr 2019</span>
 
-    <div class="message">
-  Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
+    <h2 id="final-project-idea">Final Project Idea</h2>
+
+<p>Energy drift - usually damping - is substantial for numerical integration schemes that are not <a href="https://en.wikipedia.org/wiki/Symplectic_integrator">symplectic</a>, such as the <a href="https://en.wikipedia.org/wiki/Runge-Kutta">Runge-Kutta</a> family.</p>
+
+<p><img src="http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.05.00-PM-1024x619.png" alt="" class="wp-image-394" /></p>
+
+<p><img src="http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.05.18-PM-1024x628.png" alt="" class="wp-image-395" /></p>
+
+<p><img src="http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.05.45-PM-1024x542.png" alt="" class="wp-image-396" /></p>
+
+<p><img src="http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.05.53-PM-1024x597.png" alt="" class="wp-image-397" /></p>
+
+<p><img src="http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.06.07-PM-1024x634.png" alt="" class="wp-image-398" /></p>
+
+<p><img src="http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.06.13-PM-1024x642.png" alt="" class="wp-image-399" /></p>
+
+<p>Symplectic integrators usually used in molecular dynamics, such as the <a href="https://en.wikipedia.org/wiki/Verlet_integration">Verlet integrator</a> family, exhibit increases in energy over very long time scales, though the error remains roughly constant. These integrators do not in fact reproduce the <a href="https://en.wikipedia.org/wiki/Hamiltonian_mechanics">Hamiltonian mechanics</a> of the system; instead, they reproduce a closely related “shadow” Hamiltonian whose value they conserve many orders of magnitude more closely.</p>
+
+<p>https://www.youtube.com/watch?v=VyaJVuRaW9E
+<img src="http://www.reactiongifs.com/r/bth.gif" alt="" /></p>
+
+<h2 id="paper-presentation---fepr">Paper Presentation - FEPR</h2>
+
+<p>This week we have paper presentations and I talk about this paper to the class, Fast Energy Projection for Real-time Simulation of Deformable Objects by Dinev, Liu et. al. Reference links are at the bottom.</p>
+
+<div class="message">
+### Disclaimer
+Tiantian Liu made a much better video explaining the paper. You can find that in the references as well. My presentation is very much tailored to the class and what we know collectively, which is not that much.
 </div>
 
-<p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. <em>Aenean eu leo quam.</em> Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
+<video controls="" width="700" src="https://drive.google.com/file/d/1HaLMeuPThhnI89ivUBvjGqwPY6JzKF7Z/preview"></video>
 
-<blockquote>
-  <p>Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-</blockquote>
+<p>The link to the slides is http://bit.ly/yuifepr</p>
 
-<p>Etiam porta <strong>sem malesuada magna</strong> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-
-<h2 id="inline-html-elements">Inline HTML elements</h2>
-
-<p>HTML defines a long list of available inline tags, a complete list of which can be found on the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">Mozilla Developer Network</a>.</p>
-
+<h4 id="references">References</h4>
 <ul>
-  <li><strong>To bold text</strong>, use <code class="language-plaintext highlighter-rouge">&lt;strong&gt;</code>.</li>
-  <li><em>To italicize text</em>, use <code class="language-plaintext highlighter-rouge">&lt;em&gt;</code>.</li>
-  <li>Abbreviations, like <abbr title="HyperText Markup Langage">HTML</abbr> should use <code class="language-plaintext highlighter-rouge">&lt;abbr&gt;</code>, with an optional <code class="language-plaintext highlighter-rouge">title</code> attribute for the full phrase.</li>
-  <li>Citations, like <cite>— Mark otto</cite>, should use <code class="language-plaintext highlighter-rouge">&lt;cite&gt;</code>.</li>
-  <li><del>Deleted</del> text should use <code class="language-plaintext highlighter-rouge">&lt;del&gt;</code> and <ins>inserted</ins> text should use <code class="language-plaintext highlighter-rouge">&lt;ins&gt;</code>.</li>
-  <li>Superscript <sup>text</sup> uses <code class="language-plaintext highlighter-rouge">&lt;sup&gt;</code> and subscript <sub>text</sub> uses <code class="language-plaintext highlighter-rouge">&lt;sub&gt;</code>.</li>
+  <li><a href="https://www.cs.utah.edu/~ladislav/dinev18FEPR/dinev18FEPR.html">FEPR: Fast Energy Projection for Real-time Simulation of Deformable Objects</a></li>
+  <li><a href="https://www.youtube.com/watch?v=xyB-VlesB-M">Superior video by Liu explaining the method they used</a></li>
+  <li><a href="http://box2d.org/files/GDC2015/ErinCatto_NumericalMethods.pdf">Erin Catto’s slides with the mass-spring phase portrait</a></li>
+  <li><a href="http://matthias-mueller-fischer.ch/publications/posBasedDyn.pdf">Position-based Dynamics</a></li>
+  <li><a href="https://www.cs.utah.edu/~ladislav/bouaziz14projective/bouaziz14projective.pdf">Projective Dynamics</a></li>
+  <li><a href="http://www.cs.columbia.edu/cg/pdfs/131-ESIC.pdf">Fast Projection (Goldenthal et al)</a></li>
+  <li><a href="https://stanford.edu/class/ee103/lectures/matrix_examples_slides.pdf">Selector Matrices</a></li>
 </ul>
 
-<p>Most of these elements are styled by browsers with few modifications on our part.</p>
+<h2 id="final-project-presentation">Final Project Presentation</h2>
 
-<h2 id="heading">Heading</h2>
-
-<p>Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-
-<h3 id="code">Code</h3>
-
-<p>Cum sociis natoque penatibus et magnis dis <code class="language-plaintext highlighter-rouge">code element</code> montes, nascetur ridiculus mus.</p>
-
-<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Example can be run directly in your JavaScript console
-</span>
-
-<span class="c1">// Create a function that takes two arguments and returns the sum of those arguments
-</span>
-<span class="kd">var</span> <span class="nx">adder</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Function</span><span class="p">(</span><span class="dl">"</span><span class="s2">a</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">b</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">return a + b</span><span class="dl">"</span><span class="p">);</span>
-
-<span class="c1">// Call the function
-</span>
-<span class="nx">adder</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
-<span class="c1">// &gt; 8</span></code></pre></figure>
-
-<p>Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-
-<h3 id="lists">Lists</h3>
-
-<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-
-<ul>
-  <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-  <li>Donec id elit non mi porta gravida at eget metus.</li>
-  <li>Nulla vitae elit libero, a pharetra augue.</li>
-</ul>
-
-<p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
-
-<ol>
-  <li>Vestibulum id ligula porta felis euismod semper.</li>
-  <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
-  <li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li>
-</ol>
-
-<p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
-
-<dl>
-  <dt>HyperText Markup Language (HTML)</dt>
-  <dd>The language used to describe and define the content of a Web page</dd>
-
-  <dt>Cascading Style Sheets (CSS)</dt>
-  <dd>Used to describe the appearance of Web content</dd>
-
-  <dt>JavaScript (JS)</dt>
-  <dd>The programming language used to build advanced Web sites and applications</dd>
-</dl>
-
-<p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
-
-<h3 id="tables">Tables</h3>
-
-<p>Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Upvotes</th>
-      <th>Downvotes</th>
-    </tr>
-  </thead>
-  <tfoot>
-    <tr>
-      <td>Totals</td>
-      <td>21</td>
-      <td>23</td>
-    </tr>
-  </tfoot>
-  <tbody>
-    <tr>
-      <td>Alice</td>
-      <td>10</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <td>Bob</td>
-      <td>4</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <td>Charlie</td>
-      <td>7</td>
-      <td>9</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
-
-<hr />
-
-<p>Want to see something else added? <a href="https://github.com/poole/poole/issues/new">Open an issue.</a></p>
+<iframe src="https://drive.google.com/file/d/1sxFrRZN9afnka3dR_s0ui9CiJLRZiG28/preview" width="700" height="800"></iframe>
 
   </div>
   
   <div class="post">
     <h1 class="post-title">
-      <a href="http://162.243.174.80:4000/2020/04/01/whats-jekyll/">
-        What's Jekyll?
+      <a href="http://162.243.174.80:4000/2019/03/20/deformables/">
+        notes on particle-based systems and deformables
       </a>
     </h1>
 
-    <span class="post-date">01 Apr 2020</span>
+    <span class="post-date">20 Mar 2019</span>
 
-    <p><a href="https://jekyllrb.com">Jekyll</a> is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. From <a href="https://github.com/mojombo/jekyll/blob/master/README.markdown">the project’s readme</a>:</p>
+    <p>Unified particle-based system: 
+Smoke done by advecting tiny particles along velocities provided by unified particle system.
+Seems like it is a lot of non-physically-based implementations, for example, rigidbody collisions don’t work that way.
+But it is convenient to have everything using the same system (maybe).</p>
 
-<blockquote>
-  <p>Jekyll is a simple, blog aware, static site generator. It takes a template directory […] and spits out a complete, static website suitable for serving with Apache or your favorite web server. This is also the engine behind GitHub Pages, which you can use to host your project’s page or blog right here from GitHub.</p>
-</blockquote>
+<h3 id="deformables">Deformables</h3>
+<h4 id="position-based-dynamics-pbd">Position-based Dynamics (PBD)</h4>
 
-<p>It’s an immensely useful tool and one we encourage you to use here with Lanyon.</p>
+<p>At first, Position-based Dynamics seems to be similar to Verlet integrator, which I have previously used for cloth simulation. However, the author highlights that where Verlet stores velocity implicitly with the previous and current position, PBD uses velocities explicitly.</p>
 
-<p>Find out more by <a href="https://github.com/mojombo/jekyll">visiting the project on GitHub</a>.</p>
+<p><img src="https://i1.wp.com/yuiwei.com/wp-content/uploads/2019/04/pbd1.png?fit=764%2C677" alt="" class="wp-image-714" /><img src="https://i2.wp.com/yuiwei.com/wp-content/uploads/2019/04/pbd2.png?fit=764%2C642" alt="" class="wp-image-715" /></p>
+
+<p>Later, I realised that for PBD, we try to treat everything as a constraint, including forces (except general forces like gravity, see my annotation on algorithm. When we used position constraints in the cloth simulation, it seemed to automatically correct for any instabilities given by the numerical integration method. But actually when everything is made into a constraint, this seems to shift the problem from the integration step to the constraint solver. As a result, the stability of PBD no longer depends on time-step but on the shape of the constraint functions.</p>
+
+<p>TODO: look more into XPBD. Updates soon.</p>
+
+<h4 id="finite-element-method">Finite Element Method</h4>
+
+<p><img src="https://i2.wp.com/yuiwei.com/wp-content/uploads/2019/04/fracture.png?fit=764%2C556" alt="" class="wp-image-712" /><img src="https://i2.wp.com/yuiwei.com/wp-content/uploads/2019/04/fracture2.png?fit=764%2C662" alt="" class="wp-image-713" /></p>
+
+<p>The paper “Breaking Things” video by O’Brien and Hodgins uses continuous model and finite elements made up of tetrahedrons. I was unclear on the meaning of the vector <strong><em>u</em></strong> in the equations as it does not correspond to vertex locations, instead it refers to the location of the element? Do we just take the center of the tetrahedron as <strong><em>u</em></strong>? 
+Additionally, they say that the rows of <em>β</em> are the coefficients of the shape functions, which I don’t understand.</p>
+
+<h4 id="projective-dynamics">Projective Dynamics</h4>
+
+<p>For PBD the constraint solver which does most of the work does it in a “Gauss-Seidel-like fashion”, which means solving each constraint individually independent of each other. When we project particles, the modifications are visible to the process, so the order of constraints is extremely important. For projective dynamics, constraints are taken from a local/global optimization perspective. The authors say that PBD converges to inelastic behaviour (I’m not sure why yet) and PD converges to the “true implicit Euler solution”.</p>
+
+<p>TODO: Self-study on deformables (lit review)</p>
 
   </div>
   
@@ -306,7 +253,7 @@
 
 <div class="pagination">
   
-    <span class="pagination-item older">Older</span>
+    <a class="pagination-item older" href="http://162.243.174.80:4000/page2">Older</a>
   
   
     <span class="pagination-item newer">Newer</span>

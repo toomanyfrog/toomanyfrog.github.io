@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      notes on energy drift in time integrators &middot; blog.yui.codes
+    
+  </title>
+
+  
+  <link rel="canonical" href="http://162.243.174.80:4000/2019/04/10/time-integration/">
+  
+
+  <link rel="stylesheet" href="http://162.243.174.80:4000/public/css/poole.css">
+  <link rel="stylesheet" href="http://162.243.174.80:4000/public/css/syntax.css">
+  <link rel="stylesheet" href="http://162.243.174.80:4000/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://162.243.174.80:4000/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="http://162.243.174.80:4000/public/favicon.ico">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://162.243.174.80:4000/atom.xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Abel&family=Source+Code+Pro:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"> 
+
+  
+</head>
+
+
+  <body class=""theme-base-0f>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>a blog containing mainly learning notes and thought dumps around art+tech and tech art</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="http://162.243.174.80:4000/">home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="http://162.243.174.80:4000/ethos/">about/ethos</a>
+        
+      
+    
+      
+        
+      
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2022. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">blog.yui.codes</a>
+            <small>thought dump revolving around art+tech</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">notes on energy drift in time integrators</h1>
+  <span class="post-date">10 Apr 2019 </span>
+  <h2 id="final-project-idea">Final Project Idea</h2>
+
+<p>Energy drift - usually damping - is substantial for numerical integration schemes that are not <a href="https://en.wikipedia.org/wiki/Symplectic_integrator">symplectic</a>, such as the <a href="https://en.wikipedia.org/wiki/Runge-Kutta">Runge-Kutta</a> family.</p>
+
+<p><img src="http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.05.00-PM-1024x619.png" alt="" class="wp-image-394" /></p>
+
+<p><img src="http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.05.18-PM-1024x628.png" alt="" class="wp-image-395" /></p>
+
+<p><img src="http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.05.45-PM-1024x542.png" alt="" class="wp-image-396" /></p>
+
+<p><img src="http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.05.53-PM-1024x597.png" alt="" class="wp-image-397" /></p>
+
+<p><img src="http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.06.07-PM-1024x634.png" alt="" class="wp-image-398" /></p>
+
+<p><img src="http://yuiwei.com/wp-content/uploads/2019/03/Screenshot-2019-03-06-at-12.06.13-PM-1024x642.png" alt="" class="wp-image-399" /></p>
+
+<p>Symplectic integrators usually used in molecular dynamics, such as the <a href="https://en.wikipedia.org/wiki/Verlet_integration">Verlet integrator</a> family, exhibit increases in energy over very long time scales, though the error remains roughly constant. These integrators do not in fact reproduce the <a href="https://en.wikipedia.org/wiki/Hamiltonian_mechanics">Hamiltonian mechanics</a> of the system; instead, they reproduce a closely related “shadow” Hamiltonian whose value they conserve many orders of magnitude more closely.</p>
+
+<p>https://www.youtube.com/watch?v=VyaJVuRaW9E
+<img src="http://www.reactiongifs.com/r/bth.gif" alt="" /></p>
+
+<h2 id="paper-presentation---fepr">Paper Presentation - FEPR</h2>
+
+<p>This week we have paper presentations and I talk about this paper to the class, Fast Energy Projection for Real-time Simulation of Deformable Objects by Dinev, Liu et. al. Reference links are at the bottom.</p>
+
+<div class="message">
+### Disclaimer
+Tiantian Liu made a much better video explaining the paper. You can find that in the references as well. My presentation is very much tailored to the class and what we know collectively, which is not that much.
+</div>
+
+<video controls="" width="700" src="https://drive.google.com/file/d/1HaLMeuPThhnI89ivUBvjGqwPY6JzKF7Z/preview"></video>
+
+<p>The link to the slides is http://bit.ly/yuifepr</p>
+
+<h4 id="references">References</h4>
+<ul>
+  <li><a href="https://www.cs.utah.edu/~ladislav/dinev18FEPR/dinev18FEPR.html">FEPR: Fast Energy Projection for Real-time Simulation of Deformable Objects</a></li>
+  <li><a href="https://www.youtube.com/watch?v=xyB-VlesB-M">Superior video by Liu explaining the method they used</a></li>
+  <li><a href="http://box2d.org/files/GDC2015/ErinCatto_NumericalMethods.pdf">Erin Catto’s slides with the mass-spring phase portrait</a></li>
+  <li><a href="http://matthias-mueller-fischer.ch/publications/posBasedDyn.pdf">Position-based Dynamics</a></li>
+  <li><a href="https://www.cs.utah.edu/~ladislav/bouaziz14projective/bouaziz14projective.pdf">Projective Dynamics</a></li>
+  <li><a href="http://www.cs.columbia.edu/cg/pdfs/131-ESIC.pdf">Fast Projection (Goldenthal et al)</a></li>
+  <li><a href="https://stanford.edu/class/ee103/lectures/matrix_examples_slides.pdf">Selector Matrices</a></li>
+</ul>
+
+<h2 id="final-project-presentation">Final Project Presentation</h2>
+
+<iframe src="https://drive.google.com/file/d/1sxFrRZN9afnka3dR_s0ui9CiJLRZiG28/preview" width="700" height="800"></iframe>
+
+</div>
+
+
+<div class="related">
+  <h2>Related posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2022/07/16/lighting-ue4-notes/">
+            ue4 lighting learning notes
+            <small>16 Jul 2022</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2019/03/20/deformables/">
+            notes on particle-based systems and deformables
+            <small>20 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2019/02/11/class-notes-2/">
+            week 4-5
+            <small>11 Feb 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script src='/public/js/script.js'></script>
+  </body>
+</html>

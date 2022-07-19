@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      notes on particle-based systems and deformables &middot; blog.yui.codes
+    
+  </title>
+
+  
+  <link rel="canonical" href="http://162.243.174.80:4000/2019/03/20/deformables/">
+  
+
+  <link rel="stylesheet" href="http://162.243.174.80:4000/public/css/poole.css">
+  <link rel="stylesheet" href="http://162.243.174.80:4000/public/css/syntax.css">
+  <link rel="stylesheet" href="http://162.243.174.80:4000/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://162.243.174.80:4000/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="http://162.243.174.80:4000/public/favicon.ico">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://162.243.174.80:4000/atom.xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Abel&family=Source+Code+Pro:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"> 
+
+  
+</head>
+
+
+  <body class=""theme-base-0f>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>a blog containing mainly learning notes and thought dumps around art+tech and tech art</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="http://162.243.174.80:4000/">home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="http://162.243.174.80:4000/ethos/">about/ethos</a>
+        
+      
+    
+      
+        
+      
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2022. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">blog.yui.codes</a>
+            <small>thought dump revolving around art+tech</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">notes on particle-based systems and deformables</h1>
+  <span class="post-date">20 Mar 2019 </span>
+  <p>Unified particle-based system: 
+Smoke done by advecting tiny particles along velocities provided by unified particle system.
+Seems like it is a lot of non-physically-based implementations, for example, rigidbody collisions don’t work that way.
+But it is convenient to have everything using the same system (maybe).</p>
+
+<h3 id="deformables">Deformables</h3>
+<h4 id="position-based-dynamics-pbd">Position-based Dynamics (PBD)</h4>
+
+<p>At first, Position-based Dynamics seems to be similar to Verlet integrator, which I have previously used for cloth simulation. However, the author highlights that where Verlet stores velocity implicitly with the previous and current position, PBD uses velocities explicitly.</p>
+
+<p><img src="https://i1.wp.com/yuiwei.com/wp-content/uploads/2019/04/pbd1.png?fit=764%2C677" alt="" class="wp-image-714" /><img src="https://i2.wp.com/yuiwei.com/wp-content/uploads/2019/04/pbd2.png?fit=764%2C642" alt="" class="wp-image-715" /></p>
+
+<p>Later, I realised that for PBD, we try to treat everything as a constraint, including forces (except general forces like gravity, see my annotation on algorithm. When we used position constraints in the cloth simulation, it seemed to automatically correct for any instabilities given by the numerical integration method. But actually when everything is made into a constraint, this seems to shift the problem from the integration step to the constraint solver. As a result, the stability of PBD no longer depends on time-step but on the shape of the constraint functions.</p>
+
+<p>TODO: look more into XPBD. Updates soon.</p>
+
+<h4 id="finite-element-method">Finite Element Method</h4>
+
+<p><img src="https://i2.wp.com/yuiwei.com/wp-content/uploads/2019/04/fracture.png?fit=764%2C556" alt="" class="wp-image-712" /><img src="https://i2.wp.com/yuiwei.com/wp-content/uploads/2019/04/fracture2.png?fit=764%2C662" alt="" class="wp-image-713" /></p>
+
+<p>The paper “Breaking Things” video by O’Brien and Hodgins uses continuous model and finite elements made up of tetrahedrons. I was unclear on the meaning of the vector <strong><em>u</em></strong> in the equations as it does not correspond to vertex locations, instead it refers to the location of the element? Do we just take the center of the tetrahedron as <strong><em>u</em></strong>? 
+Additionally, they say that the rows of <em>β</em> are the coefficients of the shape functions, which I don’t understand.</p>
+
+<h4 id="projective-dynamics">Projective Dynamics</h4>
+
+<p>For PBD the constraint solver which does most of the work does it in a “Gauss-Seidel-like fashion”, which means solving each constraint individually independent of each other. When we project particles, the modifications are visible to the process, so the order of constraints is extremely important. For projective dynamics, constraints are taken from a local/global optimization perspective. The authors say that PBD converges to inelastic behaviour (I’m not sure why yet) and PD converges to the “true implicit Euler solution”.</p>
+
+<p>TODO: Self-study on deformables (lit review)</p>
+
+</div>
+
+
+<div class="related">
+  <h2>Related posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2022/07/16/lighting-ue4-notes/">
+            ue4 lighting learning notes
+            <small>16 Jul 2022</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2019/04/10/time-integration/">
+            notes on energy drift in time integrators
+            <small>10 Apr 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2019/02/11/class-notes-2/">
+            week 4-5
+            <small>11 Feb 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script src='/public/js/script.js'></script>
+  </body>
+</html>
